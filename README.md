@@ -10,7 +10,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Windows](https://img.shields.io/badge/Windows-10%2B-0078D4)](#下载与启动)
 
-**[下载 CKI v1.0](https://github.com/xuegao1416/chinese-keyboard-inject/releases/tag/v1.0)** · [使用方法](#给-gba-rom-打补丁) · [C源码接入](docs/SOURCE_INTEGRATION.md) · [验证范围](qa/VALIDATION.md)
+**[下载 CKI v1.0](https://github.com/xuegao1416/chinese-keyboard-inject/releases/tag/v1.0)** · [使用方法](#给-gba-rom-打补丁) · [C源码接入](docs/SOURCE_INTEGRATION.md) · [重编译版兼容证据](docs/DECOMP_COMPATIBILITY.md) · [验证范围](qa/VALIDATION.md)
 
 </div>
 
@@ -83,6 +83,7 @@ python cki.py inject "Pokemon Emerald.gba" -o "Pokemon Emerald_cki.gba"
 ## 支持范围与限制
 
 - 本次发布对本地 25 个已知 ROM 输入进行了重新验证：24 个通过运行与边界检查，1 个因键盘窗口结构不符而被安全拒绝。完整输入哈希和各项结果见[验证记录](qa/VALIDATION.md)与[机器可读摘要](qa/validation.json)。
+- 这批 ROM 实测主要验证**二进制 ROM 注入路径**，包含 C／Thumb 重编译改版的构建产物；它不代表 SDK 已在 25 个源码工程里完成集成。详见[重编译改版兼容证据](docs/DECOMP_COMPATIBILITY.md)。
 - 汉字显示依赖 ROM 自带中文字库。CKI 不带字体，不会给英文 ROM 凭空增加汉字显示。
 - 不扩展存档姓名字段。姓名可写入容量取决于游戏的具体字段和保存代码。
 - 机器码解析会拒绝无法识别或有歧义的键盘结构；“绿宝石系”不代表任意改版都能直接支持。

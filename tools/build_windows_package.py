@@ -244,6 +244,8 @@ def build(archive, out_dir, toolchain_dir=None, exe_dir=None):
     shutil.copy2(os.path.join(ROOT, LEDGER), os.path.join(pkg, LEDGER))
     for name in ('validation.json', 'VALIDATION.md'):
         shutil.copy2(os.path.join(ROOT, 'qa', name), os.path.join(pkg, 'qa', name))
+    shutil.copy2(os.path.join(ROOT, 'qa', 'validated_hosts.json'),
+                 os.path.join(pkg, 'qa', 'validated_hosts.json'))
     if exe_dir is not None:
         exe_dir = os.path.abspath(exe_dir)
         required = ('CKI.exe', 'CKI-CLI.exe', 'internal', 'cli_internal')
