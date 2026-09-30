@@ -1,0 +1,321 @@
+{
+  "format": "CKI-1.0-QA1",
+  "project_version": "1.0",
+  "note": "Release validation against a local ROM corpus. No ROMs included. One unsupported input is safely refused.",
+  "hosts": [
+    {
+      "host": "LightPlatinum_v012_mapheader_restore",
+      "passed": true,
+      "input_sha256": "831e9ddcb18e417c3f67ff848240ea2a86280aa9aa0051b7848c0d93eb3ab613",
+      "output_sha256": "41beaa07a3590032b771bee02b042b84902200faeabcea3fd1fcae2d29a7d086",
+      "font_gate": "entered",
+      "no_label": false,
+      "script_sha256": "b06039b7de7ab4d2f243b709cbc9126e4667452d68f94a19039c7866b3b76abf",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64"
+    },
+    {
+      "host": "astral_emerald_v0.0.65",
+      "passed": false,
+      "outcome": "resolver_refused",
+      "reason": "resolver rejected this ROM: stock keyboard printer candidates=[]"
+    },
+    {
+      "host": "auri_soundtype",
+      "passed": true,
+      "input_sha256": "e434c5cb52c8681d6342659baf26c5650d98d2cdb922cb3bc38fbfb4d95c49bf",
+      "output_sha256": "bb6c6f848af10279f6a3e787213a85c69c3f0dfbf3a873406270d5e18ade9da1",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "c865ddff3a042d949c7f4b36ef7f054e857df24b6fe45fe05d803e6e488c8d77",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "bubble128_cn",
+      "passed": true,
+      "input_sha256": "6d1d421bf9ef9936481f6db02116ded2561dac0af05f1bec71c56adef6d19400",
+      "output_sha256": "aa773bba91c63df9c1b0f2bb91c29f0dfca399ac1cd4c8c31f247281273457f6",
+      "font_gate": "entered",
+      "no_label": false,
+      "script_sha256": "afea4099e04d411a14815448466a53e208088b0b467477e250ba51e22a4f2c27",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64"
+    },
+    {
+      "host": "esmeralda_ptbr_ci45",
+      "passed": true,
+      "input_sha256": "00ab134d147529ffdf38676568803197504cf48d93cb5bf4d519a73d4d94b604",
+      "output_sha256": "93131d8fcae48389dfe07c5240eace641a25ffe971345a18a06cc3b32ab59af1",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "7a7b06c7f06c8fba8f9523fbedf0cc89c7c7aab6ee6d4d2962d4be42faab1a7c",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "exmingyan_zh",
+      "passed": true,
+      "input_sha256": "276ce8fdd143982ed26fe89a81da17f68e3a4c1f4b4c0e6177e7490c762b91c7",
+      "output_sha256": "4ba2c857597915000b81c951ed70508a23355edad8dca0b266ea379c930a3c9e",
+      "font_gate": "entered",
+      "no_label": false,
+      "script_sha256": "e68563b74569a98e7426f9bfc8fa96b54b953f946385da2daf19f8bbff82708f",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64"
+    },
+    {
+      "host": "modern_emerald_dev",
+      "passed": true,
+      "input_sha256": "b51980aad90d0c8dd21c6f78e6fc671579335e55a276fed25dcbcb856fc0cbb0",
+      "output_sha256": "b1bcbead32789ee78beb5581f4d44f70741cdd1ae710ba5db0c19b8b39675943",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "5f4ec2bee2ff897e2c0be6ae5779a66bb707de227641b445cf990ea269ad2085",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "pokeemerald-ch_modern_build",
+      "passed": true,
+      "input_sha256": "280eeb2f24dbdf1413a8e7977b46fc7684f4c26499669dbbe24e9106eccb562c",
+      "output_sha256": "43458e50b4c1ffcce477a4c7a7a97e3f19c208421d8db90f4db1fcf50562f556",
+      "font_gate": "entered",
+      "no_label": false,
+      "script_sha256": "9c372bcdb38a49247505c57a37705e8fc53b5a7f30afb5d049fafbd0c7bd0e44",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64"
+    },
+    {
+      "host": "pokeemerald-rogue_release_build",
+      "passed": true,
+      "input_sha256": "d1207695d391fd461cbe0c67cd1b8cf651b1fd28996028a2121faf2d883a5801",
+      "output_sha256": "1212d13d6be1a908444ae1021f39f227eb13741611bb35acdb4dc989fe741b05",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "2267a623022890fc4a0645cac25c207ed770b674e75ba784508c442bea12df27",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "quetzal_alpha8v2_cn",
+      "passed": true,
+      "input_sha256": "68367fa64f735c7b5aa347a2855d4b6cc34e5ad98b75558aedc6bbf8362a5fe7",
+      "output_sha256": "6a6bb19b232b207dbc485844b97b65b883a4a5eacc6ccde9ff2045dee8d4f04b",
+      "font_gate": "entered",
+      "no_label": false,
+      "script_sha256": "a1aa9bb68f6c2e31cb1ab7eee7081d1a44f009ba3cd813d8eeddbdd69addef58",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64"
+    },
+    {
+      "host": "random_battles_v1.1",
+      "passed": true,
+      "input_sha256": "60dc2665f0fde6ad2e28f8f0f7720788c25c8e8cd41522147575a0998dbb9f55",
+      "output_sha256": "08af02bef041e21c68cfa34e082663dc81396aeae05d3a9d834d696a5ccac96a",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "55d52293ae8fbc3405540eec0fe6ba56299b3d67d9d30bb35184a8c1127c9210",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "rhcn_expansion",
+      "passed": true,
+      "input_sha256": "8ccddc54c42895c8fe20bf6bf76bb9fca17a030124e0aa7970dd0d22045a01a6",
+      "output_sha256": "1ca7bf731a56e8fc5de91df63910b639d38b4a3bc3ad5393f2bd422c50e455ce",
+      "font_gate": "entered",
+      "no_label": false,
+      "script_sha256": "b06039b7de7ab4d2f243b709cbc9126e4667452d68f94a19039c7866b3b76abf",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64"
+    },
+    {
+      "host": "rogue_zh",
+      "passed": true,
+      "input_sha256": "cb16244a6b8343a787de42bfc03375abc3a118cdc75858f3c3a79bf86b235745",
+      "output_sha256": "be997b3d30b1ed191353fe4d84e186f1c506699c71d14400aa5e9bb2a9a01181",
+      "font_gate": "entered",
+      "no_label": false,
+      "script_sha256": "cfb3ddb097c6d79859d2cc1e54dc8de1d385f86292dc66e4f66ea4d0bae40a26",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64"
+    },
+    {
+      "host": "stock_expansion_1103",
+      "passed": true,
+      "input_sha256": "add6c3c9fcd15d8b479692d3c9a1deb53c346a17fe1b3398fa282aa0706282f3",
+      "output_sha256": "63d8fc4aad62c53c0c04c296e1b6897f8284101e6a1ba3e778e53d3a1ff0fa06",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "8c299be18871f4dd18fd65928d70b75a770f16205f1541e4ba352bcfe87c88cd",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "stock_expansion_1114",
+      "passed": true,
+      "input_sha256": "3e10bbdbf9c5e461095296459bfe87c98a70b70396f1d7fd5f1940ba3239ed78",
+      "output_sha256": "b30f2b6a3dbe2c4401e970a98d46e7038330497efb13492783da718ea952a33c",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "81df88c76dcc430d0648fd54d6ceb1ca36999abe9b4615d37ee72149be998b52",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "stock_expansion_1123",
+      "passed": true,
+      "input_sha256": "cb689ce6b6f53c2af602a7a0b05e23c4bdb3c2c2925b82557dbc07013a87aba5",
+      "output_sha256": "84536e951342571bce96aa37e473e32c8b68ca2bd1420d538d015e18d95d7f5d",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "fca077dad5ac090d05b623cbcc6d17a6abe019a5aa91c94b8a2083d5ac76dfe8",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "stock_expansion_1134",
+      "passed": true,
+      "input_sha256": "cb0cf0f41fd7ec27a11a411599a0a8549fd242215328d02eabc626dc2c5a0904",
+      "output_sha256": "aab03dc0657f53af1a5eed9b6ccb158986c7a4a7031e4e3354da720802744d4e",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "43d7d190cfbd08972cfb1f805710dc9ecd81c52f81c6cbcbc4b072f88503f326",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "stock_expansion_1144",
+      "passed": true,
+      "input_sha256": "d5d3ee0e8b78773083b26bcc66c48ca3ad113d723d4c2b14317db762f2a63b6e",
+      "output_sha256": "9bf2f49ea2286c747455f5167b90cfcd07200706736d5717d8747101197c2c84",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "2f631fe9bf8c41389e367cad2c3a21fc68e09a3fbf4e07f09292f07e2abbdd75",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "stock_expansion_1153",
+      "passed": true,
+      "input_sha256": "ebd59f13b0fea5e155722be3eac83d56e691bad7708fa0bccae08cba3cf6b752",
+      "output_sha256": "bcdd63d9329efd94f8da43b3b5840dad8ad4dad6a796954870e4e2682af31cbc",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "b1b1b251203877cf14e586be864d0c9e30b301777967adff225359243c87a632",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "stock_expansion_1164",
+      "passed": true,
+      "input_sha256": "792d20921f493191ed9f13baf2df0c5e151b30accfba4b20a190141be2615cc9",
+      "output_sha256": "5bfc4b63b9cbb52152d4a33b3309ab3cf68391625756092c9be91cd4024b232e",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "09ebe38454d3f20beec5c8f4a2e932b39f60780baafe3f487bfeb9595aabee2a",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "stock_expansion_1170",
+      "passed": true,
+      "input_sha256": "fdc30e0eef963619f2e316c5285f7e83003d0618bd03388ab5214b0ddb2eb821",
+      "output_sha256": "791bf6a089194373ec6d2b6865609fa1625cfef9a4606cff3857c4947b6b4d12",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "968b2324c2b769f3d723616dde274ba426af48949bb92b2743c46c6db5af0df8",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "stock_expansion_174",
+      "passed": true,
+      "input_sha256": "ae33996629c4a11992ed0b8b091df32335078f31403dff885ff06f784d2db1a6",
+      "output_sha256": "4e4c59cf0c45cadd079a8150457009092856970b4d51b35346adc8a472539ddb",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "a48b30e964b312d4db581c884c48e902b8ae04d08d123443acf1361da35de860",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "stock_expansion_186",
+      "passed": true,
+      "input_sha256": "f1f24cefbcd9dc86b1b76ee467dfac6dea979351ee723d97542f1b6431f677bb",
+      "output_sha256": "f4fdf46956d8059b6912815aa79edda630cfc7905d25f44bae14c7478891d9a5",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "adca985b08bc1cee81ca7d9bcad9cf2cb7809ca73d2841f40555a6e6e0d8039c",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "stock_expansion_1_9_4",
+      "passed": true,
+      "input_sha256": "a0431ec466626aeaea524948f2a4277172889e543b164b43ecdb1d3a88796f6f",
+      "output_sha256": "f3eae33ed6c28e5b749df597eba796bed9036fb29af31bbee46408bf6ec1b973",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "da09aee7fa0f6fe2bccd79670465d9db67470a55cb916f68b30817c5a36ee14a",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    },
+    {
+      "host": "stock_expansion_master",
+      "passed": true,
+      "input_sha256": "868b73a5a9ea02d9406215a7df9baf42a0650a97f51a0d11567a1c6cf441cf67",
+      "output_sha256": "1d5d77c23c30372cc277f5862484e81a67aa185e5d72deb3240e8ac5f5cd1249",
+      "font_gate": "refused",
+      "no_label": false,
+      "script_sha256": "968b2324c2b769f3d723616dde274ba426af48949bb92b2743c46c6db5af0df8",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64",
+      "novel_pixels": 0,
+      "novelty_radius": 2
+    }
+  ],
+  "boundary_27_step_passed": 24,
+  "no_label_hosts": [
+    {
+      "host": "LightPlatinum_v012_mapheader_restore",
+      "passed": true,
+      "input_sha256": "831e9ddcb18e417c3f67ff848240ea2a86280aa9aa0051b7848c0d93eb3ab613",
+      "output_sha256": "b3d8d24633905d10597a4a9b95e0a003328ea0cb1ec4facc4db05bc76e95128a",
+      "font_gate": "entered",
+      "no_label": true,
+      "script_sha256": "b06039b7de7ab4d2f243b709cbc9126e4667452d68f94a19039c7866b3b76abf",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64"
+    },
+    {
+      "host": "bubble128_cn",
+      "passed": true,
+      "input_sha256": "6d1d421bf9ef9936481f6db02116ded2561dac0af05f1bec71c56adef6d19400",
+      "output_sha256": "e57b557ac605693b4e116e63dc4fcac9f9a39edce362e58e2d17fca523c85259",
+      "font_gate": "entered",
+      "no_label": true,
+      "script_sha256": "afea4099e04d411a14815448466a53e208088b0b467477e250ba51e22a4f2c27",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64"
+    },
+    {
+      "host": "rogue_zh",
+      "passed": true,
+      "input_sha256": "cb16244a6b8343a787de42bfc03375abc3a118cdc75858f3c3a79bf86b235745",
+      "output_sha256": "5b7b102441551f6b1ed338c385582c6f5e70bffeeb8336c18b684e09b37fecd2",
+      "font_gate": "entered",
+      "no_label": true,
+      "script_sha256": "cfb3ddb097c6d79859d2cc1e54dc8de1d385f86292dc66e4f66ea4d0bae40a26",
+      "harness_sha256": "7e561bfd65cad9a5a18054bc071759537ab239327ee27ea012388ec1abb1ff64"
+    }
+  ],
+  "unit_tests_passed": 23
+}

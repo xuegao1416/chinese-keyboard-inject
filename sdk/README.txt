@@ -1,0 +1,1 @@
+This directory contains exporter templates. Run tools/export_source.py to create a bundle: the exporter fills the encoded table and copies payload/cki_text.h. Do not compile cki_keyboard.c here before export.

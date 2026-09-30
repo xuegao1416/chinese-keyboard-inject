@@ -1,0 +1,30 @@
+# append_probe.txt -- full CN round-trip: lock, move cursor, pick a cell, exit with SELECT.
+ptr NS 0x02036240
+frames 600
+untillive NS 0x02000000 0x02040000 40 A
+frames 180
+repeat 8 key RIGHT
+key A
+frames 60
+text "locked lock="
+peek NS+0x1e26 2 be
+text "\n"
+key DOWN
+key RIGHT
+frames 30
+key A
+frames 60
+text "after_pick lock="
+peek NS+0x1e26 2 be
+text " name="
+peek NS+0x1800 8
+text "\n"
+shot ap_pick
+key SELECT
+frames 60
+text "after_SELECT lock="
+peek NS+0x1e26 2 be
+text " name="
+peek NS+0x1800 8
+text "\n"
+shot ap_unlock

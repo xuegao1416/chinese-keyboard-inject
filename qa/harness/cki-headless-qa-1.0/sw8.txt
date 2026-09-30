@@ -1,0 +1,8 @@
+ptr NS 0x02036244
+frames 600
+untillive NS 0x02000000 0x02040000 40 A
+frames 180
+repeat 8 key RIGHT
+key A
+frames 60
+shot sweep

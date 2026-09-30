@@ -1,0 +1,45 @@
+# Regression: deleting a Chinese name after switching to Latin must erase a token.
+ptr NS 0x02035358
+ptr C 0x00FF00FF
+frames 240
+key START
+frames 90
+key A
+frames 120
+untillive NS 0x02000000 0x02040000 60 A
+frames 180
+shot naming
+untillive C 0x8 0x9 16 RIGHT
+frames 60
+key A
+frames 120
+text "entered lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot entered
+key A
+frames 60
+text "chinese name="
+peek NS+0x1800 8
+text "\n"
+shot chinese
+key SELECT
+frames 120
+text "exited lock="
+peek NS+0x1e26 2 be
+text " name="
+peek NS+0x1800 8
+text "\n"
+shot exited
+key B
+frames 60
+text "deleted name="
+peek NS+0x1800 8
+text "\n"
+shot deleted
+key A
+frames 60
+text "latin name="
+peek NS+0x1800 8
+text "\n"
+shot latin

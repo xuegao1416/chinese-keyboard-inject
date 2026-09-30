@@ -1,0 +1,295 @@
+# cki_boundary.txt -- gate 4 (docs/QA_ACCEPTANCE_STANDARD.md) FULL boundary route.
+#
+# The 10-frame cki_probe route only proves the takeover shape (locked -> CN grid
+# -> name buffer -> SELECT unlock). Gate 4 additionally lists R/L page change,
+# the 223<->0 wrap, the Page-Tab unlock and the mixed 7-byte overflow rejection.
+# Those had never been run per host. This script is that run.
+#
+# Every expectation is read off payload/adapter_v10.c, not invented:
+#   lock word   NS+0x1E26 = 0xC000|page while locked, 0x0000 after unlock (ck_set_page)
+#   R           bit 0x0100 -> page = (page>=223) ? 0   : page+1   (ck_handle_frame)
+#   L           bit 0x0200 -> page = (page==0)   ? 223 : page-1
+#               223 == 0xDF, so the wrap shows up as C000 -> C0DF -> C000
+#   PAGE cell   cursor cell (8,0) -> ck_page_handler: locks when unlocked,
+#               ck_unlock()+label_restore() when already locked
+#   append      ck_append_cn: 2 bytes per CN char, bails with i>5, so the field
+#               holds at most 3 CN chars and the 4th press must not change it
+#   delete      ck_delete_handler: drops a whole pair only when the byte before
+#               the last one is a CN lead byte (0x01..0x1E); Latin = 1 byte
+#
+# Two route facts this script exists because of, both learned from a run and not
+# from the source comment above:
+#   1. Locking resets the cursor onto cell (0,0) -- ck_page_handler calls
+#      ck_cursor_hook(0,0). So a fixed number of RIGHT presses does NOT walk from
+#      the PAGE cell back onto the grid, and any route that assumed it drifted.
+#      Everything here therefore walks with `untillive`, i.e. it reads the cursor
+#      cell out of gSprites and stops when it is (8,0).
+#   2. In Chinese mode the D-pad goes to the stock handler, which moves the
+#      cursor over the STOCK layout; the number of steps needed to reach a given
+#      cell is host-specific. Probing the cell is the only portable form.
+#
+# Sentinels the runner substitutes per host (both must appear, both are asserted):
+#   0x2036240 = resolver.naming_screen_global
+#   0x203abde = resolver.sprites_global + 0x2E, the cursor cell word. The runner
+#                folds the offset in because `peek` only accepts SYM+0xoff, not
+#                0xliteral+0xoff. Cursor sprite id must be 0, which `cid=` below
+#                prints on every host so the assumption stays auditable.
+# Spr.data[0]/data[1] sit at offsets 0x2E/0x30 (s16 each), so the 32-bit word
+# there is x + 65536*y and cell (8,0) is the half-open range [0x8, 0x9).
+#
+# Default key timing only -- do not tune.
+
+ptr NS 0x2036240
+ptr C  0x203abde
+
+frames 240
+key START
+frames 90
+key A
+frames 120
+untillive NS 0x02000000 0x02040000 60 A
+frames 180
+
+text "b01 naming ptr="
+peek 0x2036240 4 be
+text " cid="
+peek NS+0x1e23 1
+text " cell="
+peek32 0x203abde
+text " lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot b01_naming
+
+# ---- walk to the PAGE cell by reading the cursor, not by counting steps
+untillive C 0x8 0x9 16 RIGHT
+frames 60
+text "b02 at_page cell="
+peek32 0x203abde
+text " lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot b02_at_page
+
+# A there = lock at page 0, and the cursor is reset to cell (0,0)
+key A
+frames 60
+text "b03 locked cell="
+peek32 0x203abde
+text " lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot b03_locked
+
+# ---- R: page 0 -> 1
+key R
+frames 60
+text "b04 after_R lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot b04_page1
+
+# ---- L: page 1 -> 0
+key L
+frames 60
+text "b05 after_L lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot b05_page0
+
+# ---- L at page 0 must WRAP to 223 = 0xDF
+key L
+frames 60
+text "b06 wrap_L_to_223 lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot b06_wrap223
+
+# ---- R at 223 must WRAP back to 0
+key R
+frames 60
+text "b07 wrap_R_to_0 lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot b07_wrap0
+
+# ---- page must actually drive the glyphs: append at page 0, then at page 1
+key A
+frames 60
+text "b08 p0_char name="
+peek NS+0x1800 8
+text "\n"
+shot b08_p0_char
+
+key R
+frames 60
+key A
+frames 60
+text "b09 p1_char name="
+peek NS+0x1800 8
+text " lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot b09_p1_char
+
+key L
+frames 60
+
+# ---- the field now holds 3 double-byte chars; a 4th must bounce unchanged
+key A
+frames 60
+text "b10 cn3_full name="
+peek NS+0x1800 8
+text "\n"
+shot b10_cn3_full
+
+key A
+frames 60
+text "b11 cn4_rejected name="
+peek NS+0x1800 8
+text " lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot b11_cn4_rejected
+
+# ---- B peels WHOLE PAIRS while locked (6 -> 4 -> 2 -> empty), so the mixed
+#      phase below starts from a known-empty field instead of a leftover pair.
+key B
+frames 60
+text "b12 del_pair1 name="
+peek NS+0x1800 8
+text "\n"
+shot b12_del_pair1
+
+key B
+frames 60
+text "b13 del_pair2 name="
+peek NS+0x1800 8
+text "\n"
+shot b13_del_pair2
+
+key B
+frames 60
+text "b14 del_pair3 name="
+peek NS+0x1800 8
+text "\n"
+shot b14_del_pair3
+
+# ---- Page-Tab: the PAGE cell unlocks when already locked
+untillive C 0x8 0x9 16 RIGHT
+frames 60
+key A
+frames 60
+text "b15 pagetab_unlock cell="
+peek32 0x203abde
+text " lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot b15_pagetab_unlocked
+
+# ---- same cell locks again -> the toggle is repeatable, cursor back to (0,0)
+key A
+frames 60
+text "b16 rellocked cell="
+peek32 0x203abde
+text " lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot b16_relocked
+
+# ---- SELECT is the other global escape
+key SELECT
+frames 60
+text "b17 select_unlock cell="
+peek32 0x203abde
+text " lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot b17_select_unlocked
+
+# ---- MIXED, from an empty field: unlocked, so each A writes ONE stock byte
+key A
+frames 60
+text "b18 latin1 name="
+peek NS+0x1800 8
+text "\n"
+shot b18_latin1
+
+key A
+frames 60
+text "b19 latin2 name="
+peek NS+0x1800 8
+text "\n"
+shot b19_latin2
+
+# re-lock from the PAGE cell
+untillive C 0x8 0x9 16 RIGHT
+frames 60
+key A
+frames 60
+text "b20 mixed_locked cell="
+peek32 0x203abde
+text " lock="
+peek NS+0x1e26 2 be
+text " name="
+peek NS+0x1800 8
+text "\n"
+shot b20_mixed_locked
+
+# 2 Latin bytes are already in the field, so pairs land at 2..3 and 4..5 and the
+# scan then reaches i=6, which is > 5: the third CN char must bounce. That is
+# gate 4's "mixed 7-byte input / overflow rejection".
+key A
+frames 60
+text "b21 mixed_cn1 name="
+peek NS+0x1800 8
+text "\n"
+shot b21_mixed_cn1
+
+key A
+frames 60
+text "b22 mixed_cn2_full name="
+peek NS+0x1800 8
+text "\n"
+shot b22_mixed_cn2_full
+
+key A
+frames 60
+text "b23 mixed_rejected name="
+peek NS+0x1800 8
+text " lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot b23_mixed_rejected
+
+# ---- B on a mixed buffer: two whole pairs, then single Latin bytes. This is the
+#      pair/Latin discriminator in ck_delete_handler (lead byte 0x01..0x1E).
+key B
+frames 60
+text "b24 mixed_del_pair name="
+peek NS+0x1800 8
+text "\n"
+shot b24_mixed_del_pair
+
+key B
+frames 60
+text "b25 mixed_del_pair2 name="
+peek NS+0x1800 8
+text "\n"
+shot b25_mixed_del_pair2
+
+key B
+frames 60
+text "b26 mixed_del_latin name="
+peek NS+0x1800 8
+text "\n"
+shot b26_mixed_del_latin
+
+key B
+frames 60
+text "b27 mixed_del_latin2 name="
+peek NS+0x1800 8
+text " lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot b27_empty

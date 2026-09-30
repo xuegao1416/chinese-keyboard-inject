@@ -1,0 +1,325 @@
+{
+  "format": "CKI-V390-NAKED-ROM-SEMANTIC-API",
+  "project_version": "1.0",
+  "release_pass": false,
+  "note": "No map/sym input. Engine APIs resolved from NamingScreen call semantics. Requires fresh runtime/visual QA per docs/QA_ACCEPTANCE_STANDARD.md.",
+  "input": "test_roms/roms/pokeemerald-ch_modern_build.gba",
+  "output": "build/clang/out.gba",
+  "input_sha256": "280eeb2f24dbdf1413a8e7977b46fc7684f4c26499669dbbe24e9106eccb562c",
+  "output_sha256": "d997d8c7a1f0d8f89851c2a683fcbdd1684b4f2e7b983f050c695f33c7d6d9a5",
+  "resolver": {
+    "family": "modern-dataflow-v39",
+    "handle_via": "table_literal",
+    "addchar_inlined": "0x1",
+    "getchar_repaired": "0x0",
+    "keyboard_data": "0x717524",
+    "getchar": "0x13b1c8",
+    "addchar": null,
+    "bufferchar": null,
+    "character": "0x13ab84",
+    "page": "0x13abf8",
+    "backspace": "0x13ac28",
+    "ok": "0x13ac4c",
+    "handler_table": "0x717838",
+    "handle": "0x13aad8",
+    "delete": "0x13b104",
+    "cursor": "0x18c3e8",
+    "flash": "0x139ee8",
+    "lr_frame": "0x1396d0",
+    "naming_screen_global": "0x2036240",
+    "sprites_global": "0x203abb0",
+    "ewram_literal_counts": {
+      "0x203abb0": 7,
+      "0x2036240": 7
+    },
+    "ewram_use_semantics": {
+      "0x203abb0": {
+        "ptr_deref": 0,
+        "direct": 7
+      },
+      "0x2036240": {
+        "ptr_deref": 6,
+        "direct": 4
+      }
+    }
+  },
+  "gmain": {
+    "gMain": 50351168,
+    "newKeysRaw": 50351210,
+    "score": 543,
+    "candidates": [
+      {
+        "gMain": "0x3004c40",
+        "refs": 543,
+        "heldKeys_refs": 1,
+        "plus38_refs": 1,
+        "score": 543
+      }
+    ]
+  },
+  "externals": {
+    "PlaySE": "0x81ae885",
+    "FillWindowPixelBuffer": "0x81e26d9",
+    "PutWindowTilemap": "0x81e2285",
+    "CopyWindowToVram": "0x81e21ad",
+    "AddTextPrinterParameterized3": "0x812d995"
+  },
+  "draw_text_entry": "0x813b431",
+  "cursor": {
+    "table": "0x717588",
+    "set_cursor": "0x813a368",
+    "sites": [
+      "0x1398ee",
+      "0x139c78",
+      "0x13a34c",
+      "0x13ab46",
+      "0x13ae32"
+    ]
+  },
+  "defines": [
+    "-DCK_NS_GLOBAL=0x2036240",
+    "-DCK_GSPRITES=0x203abb0",
+    "-DCK_ADDTEXT=0x812d995",
+    "-DCK_DRAW_TEXT_ENTRY=0x813b431",
+    "-DCK_FLASH=0x8139ee9",
+    "-DCK_HANDLE_EVENT=0x813aad9",
+    "-DCK_ORIG_CHARACTER=0x813ab85",
+    "-DCK_ORIG_PAGE=0x813abf9",
+    "-DCK_ORIG_BACKSPACE=0x813ac29",
+    "-DCK_GMAIN_NEWKEYS_RAW=0x3004c6a",
+    "-DCK_PLAYSE=0x81ae885",
+    "-DCK_FILLWIN=0x81e26d9",
+    "-DCK_PUTWIN=0x81e2285",
+    "-DCK_COPYWIN=0x81e21ad",
+    "-DCK_SETCURSOR=0x813a369",
+    "-DCK_KB_TILEBASE=0x30",
+    "-DCK_KB_TILEBASE2=0xc8",
+    "-DCK_KB_WINW=0x13",
+    "-DCK_KB_BG1=0x1",
+    "-DCK_KB_BG2=0x2"
+  ],
+  "toolchain": {
+    "kind": "clang",
+    "cc": "/usr/bin/clang",
+    "objcopy": "/usr/bin/llvm-objcopy-18",
+    "nm": "/usr/bin/nm",
+    "command": [
+      "/usr/bin/clang",
+      "--target=arm-none-eabi",
+      "-fuse-ld=lld",
+      "-mcpu=arm7tdmi",
+      "-mthumb",
+      "-Os",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-pic",
+      "-nostdlib",
+      "-DCK_NS_GLOBAL=0x2036240",
+      "-DCK_GSPRITES=0x203abb0",
+      "-DCK_ADDTEXT=0x812d995",
+      "-DCK_DRAW_TEXT_ENTRY=0x813b431",
+      "-DCK_FLASH=0x8139ee9",
+      "-DCK_HANDLE_EVENT=0x813aad9",
+      "-DCK_ORIG_CHARACTER=0x813ab85",
+      "-DCK_ORIG_PAGE=0x813abf9",
+      "-DCK_ORIG_BACKSPACE=0x813ac29",
+      "-DCK_GMAIN_NEWKEYS_RAW=0x3004c6a",
+      "-DCK_PLAYSE=0x81ae885",
+      "-DCK_FILLWIN=0x81e26d9",
+      "-DCK_PUTWIN=0x81e2285",
+      "-DCK_COPYWIN=0x81e21ad",
+      "-DCK_SETCURSOR=0x813a369",
+      "-DCK_KB_TILEBASE=0x30",
+      "-DCK_KB_TILEBASE2=0xc8",
+      "-DCK_KB_WINW=0x13",
+      "-DCK_KB_BG1=0x1",
+      "-DCK_KB_BG2=0x2",
+      "-Wl,-T,build/clang/link_v10.ld",
+      "-Wl,--gc-sections",
+      "-o",
+      "build/clang/adapter_v10.elf",
+      "payload/adapter_v10.c"
+    ]
+  },
+  "payload": {
+    "offset": "0x4be260",
+    "runtime": "0x84be260",
+    "size": 18402,
+    "out_of_bl_range": false,
+    "gateway": null
+  },
+  "free_space": {
+    "start": "0x4be260",
+    "end": "0x4c4c04",
+    "fill": "0x0",
+    "size": "0x69a4",
+    "far": "0x0",
+    "literal_pool_refs": []
+  },
+  "handler_table": {
+    "offset": "0x717838",
+    "old": "85ab1308f9ab130829ac13084dac1308",
+    "new": [
+      "0x84be281",
+      "0x84be325",
+      "0x813ac29",
+      "0x813ac4d"
+    ]
+  },
+  "delete_hook": {
+    "offset": "0x13b104",
+    "old": "30b5284d284b2868",
+    "target": "0x84be46d"
+  },
+  "frame_hook": {
+    "offset": "0x1396d0",
+    "old": "01f002fa",
+    "target": "0x84be54d"
+  },
+  "hooks": {
+    "cursor_0": {
+      "offset": "0x1398ee",
+      "old": "00f03bfd",
+      "target": "0x84beae9"
+    },
+    "cursor_1": {
+      "offset": "0x139c78",
+      "old": "00f076fb",
+      "target": "0x84beae9"
+    },
+    "cursor_2": {
+      "offset": "0x13a34c",
+      "old": "00f00cf8",
+      "target": "0x84beae9"
+    },
+    "cursor_3": {
+      "offset": "0x13ab46",
+      "old": "fff70ffc",
+      "target": "0x84beae9"
+    },
+    "cursor_4": {
+      "offset": "0x13ae32",
+      "old": "fff799fa",
+      "target": "0x84beae9"
+    }
+  },
+  "precheck": [
+    {
+      "check": "character_is_function_entry",
+      "ok": true,
+      "detail": "character @ 0x13ab84 first halfword 0xb530 (push)"
+    },
+    {
+      "check": "page_is_function_entry",
+      "ok": true,
+      "detail": "page @ 0x13abf8 first halfword 0xb510 (push)"
+    },
+    {
+      "check": "backspace_is_function_entry",
+      "ok": true,
+      "detail": "backspace @ 0x13ac28 first halfword 0xb510 (push)"
+    },
+    {
+      "check": "ok_is_function_entry",
+      "ok": true,
+      "detail": "ok @ 0x13ac4c first halfword 0xb510 (push)"
+    },
+    {
+      "check": "handle_is_function_entry",
+      "ok": true,
+      "detail": "handle @ 0x13aad8 first halfword 0xb570 (push)"
+    },
+    {
+      "check": "delete_is_function_entry",
+      "ok": true,
+      "detail": "delete @ 0x13b104 first halfword 0xb530 (push)"
+    },
+    {
+      "check": "getchar_is_function_entry",
+      "ok": true,
+      "detail": "getchar @ 0x13b1c8 first halfword 0xb570 (push)"
+    },
+    {
+      "check": "flash_is_function_entry",
+      "ok": true,
+      "detail": "flash @ 0x139ee8 first halfword 0xb5f0 (push)"
+    },
+    {
+      "check": "single_code_island",
+      "ok": true,
+      "detail": "span 0x1af8 over character/page/backspace/ok/delete/getchar/flash/lr_frame (limit 0x8000); handle excluded - checks 1 and 5 bind it directly"
+    },
+    {
+      "check": "handler_table_is_thumb_pointers",
+      "ok": true,
+      "detail": "table @ 0x717838 -> ['0x813ab85', '0x813abf9', '0x813ac29', '0x813ac4d']"
+    },
+    {
+      "check": "handler_table_matches_resolved_handlers",
+      "ok": true,
+      "detail": "table[0]=0x813ab85 vs character=0x813ab85, table[1]=0x813abf9 vs page=0x813abf9"
+    },
+    {
+      "check": "frame_site_calls_handle_event",
+      "ok": true,
+      "detail": "lr_frame 0x1396d0 -> 0x813aad9, handle=0x813aad8"
+    },
+    {
+      "check": "delete_site_is_function_entry",
+      "ok": true,
+      "detail": "delete @ 0x13b104 first halfword 0xb530"
+    },
+    {
+      "check": "external_PlaySE_in_range",
+      "ok": true,
+      "detail": "PlaySE = 0x81ae885"
+    },
+    {
+      "check": "external_FillWindowPixelBuffer_in_range",
+      "ok": true,
+      "detail": "FillWindowPixelBuffer = 0x81e26d9"
+    },
+    {
+      "check": "external_PutWindowTilemap_in_range",
+      "ok": true,
+      "detail": "PutWindowTilemap = 0x81e2285"
+    },
+    {
+      "check": "external_CopyWindowToVram_in_range",
+      "ok": true,
+      "detail": "CopyWindowToVram = 0x81e21ad"
+    },
+    {
+      "check": "external_AddTextPrinterParameterized3_in_range",
+      "ok": true,
+      "detail": "AddTextPrinterParameterized3 = 0x812d995"
+    },
+    {
+      "check": "window_api_same_block",
+      "ok": true,
+      "detail": "Fill/Put/Copy span 0x52c (limit 0x8000); gflib/window.o .text measures ~0x1154-0x13e8, but no fill-shaped function lies inside the Put/Copy block, so proximity offered nothing nearer than the uniquely-bursting trio"
+    },
+    {
+      "check": "gmain_newkeys_raw",
+      "ok": true,
+      "detail": "gMain 0x3004c40 newKeysRaw 0x3004c6a plus38(+0x38) refs=1 heldKeys(+0x2C) refs=1 base refs=543"
+    },
+    {
+      "check": "free_run_uniform",
+      "ok": true,
+      "detail": "run 0x4be260..0x4c4c04 fill 0x00 size 0x69a4 align4=True"
+    },
+    {
+      "check": "payload_fits",
+      "ok": true,
+      "detail": "payload 18402 bytes at 0x4be260"
+    },
+    {
+      "check": "draw_text_entry_thumb",
+      "ok": true,
+      "detail": "draw_text_entry 0x813b431"
+    }
+  ],
+  "oracle": null,
+  "host_status": "validated"
+}

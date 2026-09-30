@@ -1,0 +1,181 @@
+{
+  "format": "CKI-MAP-CROSSCHECK1",
+  "rom": "D:/LP/roms/test_matrix/pokeemerald-ch_modern_build.gba",
+  "map": "D:/LP/roms/test_matrix/pokeemerald-ch_modern_build.map",
+  "expected_object": "src/naming_screen.o",
+  "agree": 17,
+  "total": 17,
+  "pass": true,
+  "rows": [
+    {
+      "kind": "external",
+      "name": "PlaySE",
+      "resolver": "0x81ae885",
+      "map": "0x81ae884",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "kind": "external",
+      "name": "FillWindowPixelBuffer",
+      "resolver": "0x81e26d9",
+      "map": "0x81e26d8",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "kind": "external",
+      "name": "PutWindowTilemap",
+      "resolver": "0x81e2285",
+      "map": "0x81e2284",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "kind": "external",
+      "name": "CopyWindowToVram",
+      "resolver": "0x81e21ad",
+      "map": "0x81e21ac",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "kind": "external",
+      "name": "AddTextPrinterParameterized3",
+      "resolver": "0x812d995",
+      "map": "0x812d994",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "kind": "global",
+      "name": "gMain",
+      "resolver": "0x3004c40",
+      "map": "0x3004c40",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "kind": "global",
+      "name": "gSprites",
+      "resolver": "0x203abb0",
+      "map": "0x203abb0",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "kind": "global",
+      "name": "sNamingScreen",
+      "resolver": "0x2036240",
+      "map": "0x2036240",
+      "ok": true,
+      "note": "recovered from the ewram_data section of src/naming_screen.o"
+    },
+    {
+      "kind": "containment",
+      "name": "character",
+      "resolver": "0x13ab84",
+      "map": "src/naming_screen.o",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "kind": "containment",
+      "name": "page",
+      "resolver": "0x13abf8",
+      "map": "src/naming_screen.o",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "kind": "containment",
+      "name": "backspace",
+      "resolver": "0x13ac28",
+      "map": "src/naming_screen.o",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "kind": "containment",
+      "name": "ok",
+      "resolver": "0x13ac4c",
+      "map": "src/naming_screen.o",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "kind": "containment",
+      "name": "handle",
+      "resolver": "0x13aad8",
+      "map": "src/naming_screen.o",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "kind": "containment",
+      "name": "delete",
+      "resolver": "0x13b104",
+      "map": "src/naming_screen.o",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "kind": "containment",
+      "name": "getchar",
+      "resolver": "0x13b1c8",
+      "map": "src/naming_screen.o",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "kind": "containment",
+      "name": "flash",
+      "resolver": "0x139ee8",
+      "map": "src/naming_screen.o",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "kind": "containment",
+      "name": "lr_frame",
+      "resolver": "0x13989e",
+      "map": "src/naming_screen.o",
+      "ok": true,
+      "note": ""
+    }
+  ],
+  "resolver": {
+    "family": "modern-dataflow-v37",
+    "addchar_inlined": "0x1",
+    "keyboard_data": "0x717524",
+    "getchar": "0x13b1c8",
+    "addchar": null,
+    "bufferchar": null,
+    "character": "0x13ab84",
+    "page": "0x13abf8",
+    "backspace": "0x13ac28",
+    "ok": "0x13ac4c",
+    "handler_table": "0x717838",
+    "handle": "0x13aad8",
+    "delete": "0x13b104",
+    "cursor": "0x18c3e8",
+    "flash": "0x139ee8",
+    "lr_frame": "0x13989e",
+    "naming_screen_global": "0x2036240",
+    "sprites_global": "0x203abb0",
+    "ewram_literal_counts": {
+      "0x203abb0": 7,
+      "0x2036240": 7
+    },
+    "ewram_use_semantics": {
+      "0x203abb0": {
+        "ptr_deref": 0,
+        "direct": 7
+      },
+      "0x2036240": {
+        "ptr_deref": 6,
+        "direct": 4
+      }
+    }
+  }
+}

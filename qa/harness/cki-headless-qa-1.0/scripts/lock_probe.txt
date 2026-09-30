@@ -1,0 +1,21 @@
+# lock_probe.txt -- minimal: is the PAGE-role cell reachable, and does A there lock CN mode?
+ptr NS 0x02036244
+frames 600
+untillive NS 0x02000000 0x02040000 40 A
+frames 180
+repeat 8 key RIGHT
+text "at8 page="
+peek NS+0x1e22 1
+text " lock="
+peek NS+0x1e26 2 be
+text "\n"
+key A
+frames 60
+text "afterA lock="
+peek NS+0x1e26 2 be
+text " page="
+peek NS+0x1e22 1
+text " name="
+peek NS+0x1800 8
+text "\n"
+shot lp_afterA

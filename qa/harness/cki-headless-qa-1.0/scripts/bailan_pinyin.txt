@@ -1,0 +1,42 @@
+# bailan_pinyin.txt -- walk to the naming screen of BaiLan's own pinyin-IME ROM
+# (NOT patched by CKI; shot for UI reference).
+# NS cell from test_roms/roms/bailan_pinyin.map:
+#   .sbss 0x020312d8 0x4 src/naming_screen.o   (static sNamingScreen pointer)
+# The 30-key grid is row-major: qwertyuiop / asdfghjklv / zxcvbnm.
+# gba_capture only knows A B SELECT START and the D-pad, so letters are typed
+# by walking the cursor.
+
+ptr NS 0x020312d8
+
+frames 600
+untillive NS 0x02000000 0x02040000 40 A
+frames 180
+shot bp_1_naming
+
+# cursor starts on the first key: take it -> 'q'
+key A
+frames 30
+shot bp_2_q
+
+# 7 steps right along row 0 lands on 'i' -> buffer now "qi"
+repeat 7 key RIGHT
+key A
+frames 60
+shot bp_3_qi
+
+# candidates sit above the keyboard; step up and pick the first one
+key UP
+frames 30
+shot bp_4_candarea
+key A
+frames 60
+shot bp_5_picked
+
+# mode buttons sit below the keyboard row
+repeat 5 key DOWN
+frames 30
+shot bp_6_controls
+key RIGHT
+key A
+frames 60
+shot bp_7_mode2

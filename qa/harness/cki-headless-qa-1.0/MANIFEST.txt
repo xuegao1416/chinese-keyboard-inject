@@ -1,0 +1,57 @@
+CKI headless QA -- package manifest
+
+root in archive : cki-headless-qa-1.0/
+files           : 41 (+ this file; the total includes MANIFEST.txt)
+listed below    : 41 files, 450029 bytes (439.5 KiB), excluding MANIFEST.txt
+
+No game ROM image, no font bitmap, no compiled binary is shipped.
+Every file below is text except the nine PNGs and one .raw.
+
+bytes       path
+----------  ----------------------------------------
+2315        CREDITS.md
+1091        LICENSE
+836         LICENSE_NOTE.md
+7165        PITFALLS.md
+8679        README.md
+3606        SHA256SUMS.txt
+1224        build.sh
+2909        check_env.sh
+1400        docs/QA_ACCEPTANCE_STANDARD.md
+2422        reference/README.md
+14120       reference/behaviour_montage.png
+1740        reference/known_defective/README.txt
+22650       reference/known_defective/reference_montage.png
+5879        reference/known_defective/v10_1cn.png
+5983        reference/known_defective/v10_2cn.png
+5976        reference/known_defective/v10_3cn.png
+5983        reference/known_defective/v10_4th.png
+6030        reference/known_defective/v10_delete.png
+5784        reference/known_defective/v10_locked_empty.png
+5980        reference/known_defective/v10_readd.png
+283         reference/qa_boundary_v10_result.log
+3980        reference/v10_1cn.png
+3991        reference/v10_2cn.png
+4005        reference/v10_3cn.png
+3990        reference/v10_4th.png
+4015        reference/v10_delete.png
+3934        reference/v10_locked_empty.png
+262144      reference/v10_locked_empty.raw
+4030        reference/v10_readd.png
+556         run_all.sh
+2221        run_capture.sh
+3111        run_reference.sh
+2951        scripts/README.md
+1821        scripts/chinese_gate.txt
+13291       src/gba_capture.c
+5963        src/qa_boundary_v10.c
+6307        tools/gbapng.py
+2756        tools/montage.py
+3343        tools/png_cmp.py
+2681        tools/raw2png.py
+2884        verify.sh
+
+Executable bit (0755) is set on: *.sh
+SHA256SUMS.txt covers every file except itself and this manifest.
+
+See README.md to start, PITFALLS.md before changing code.

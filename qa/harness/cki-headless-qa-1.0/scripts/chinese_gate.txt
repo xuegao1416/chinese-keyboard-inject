@@ -1,0 +1,81 @@
+# chinese_gate.txt — the CKI 1.0 behaviour gate, expressed for gba_capture.
+#
+# Step-for-step equivalent of src/qa_boundary_v10.c. The key timings used are
+# gba_capture's defaults -- 2 frames held, 120 frames released -- which are the
+# timings the recorded baseline was made with. Do not "tune" them: see
+# PITFALLS.md #2.
+#
+#   NS = the naming screen's EWRAM pointer cell, i.e. the report field
+#        resolver.naming_screen_global. For CKI 1.0 on pokeemerald-ch it is
+#        0x02036240. On a different host ROM, re-read it from that ROM's report
+#        AND re-record the baseline -- an old baseline does not transfer.
+#
+# Expected log (out/capture.log) must equal reference/qa_boundary_v10_result.log.
+
+ptr NS 0x02036240
+
+# boot, then mash A until the naming screen pointer goes live
+frames 600
+untillive NS 0x02000000 0x02040000 40 A
+frames 180
+
+# walk the stock cursor onto the PAGE label, then press A to enter CN mode
+repeat 8 key RIGHT
+key A
+
+text "locked_empty "
+peek NS+0x1800 10
+text " state="
+peek NS+0x1e26 2 be
+text "\n"
+shot v10_locked_empty
+
+key A
+text "one "
+peek NS+0x1800 10
+text " state="
+peek NS+0x1e26 2 be
+text "\n"
+shot v10_1cn
+
+key A
+text "two "
+peek NS+0x1800 10
+text " state="
+peek NS+0x1e26 2 be
+text "\n"
+shot v10_2cn
+
+key A
+text "three "
+peek NS+0x1800 10
+text " state="
+peek NS+0x1e26 2 be
+text "\n"
+shot v10_3cn
+
+# fourth A press must be rejected: field length for this template is 3 CN chars
+key A
+text "fourth "
+peek NS+0x1800 10
+text " state="
+peek NS+0x1e26 2 be
+text "\n"
+shot v10_4th
+
+# B must delete a whole double-byte character, not leave a dangling lead byte
+key B
+text "after_delete "
+peek NS+0x1800 10
+text " state="
+peek NS+0x1e26 2 be
+text "\n"
+shot v10_delete
+
+key A
+text "after_readd "
+peek NS+0x1800 10
+text " state="
+peek NS+0x1e26 2 be
+text "\n"
+shot v10_readd

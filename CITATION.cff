@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If CKI helps your project, please credit 脆皮穴糕 (xuegao1416)."
+title: "CKI: Pokémon Emerald Chinese Keyboard"
+version: "1.0"
+date-released: "2026-09-30"
+url: "https://github.com/xuegao1416/chinese-keyboard-inject"
+license: MIT
+authors:
+  - name: "脆皮穴糕 (xuegao1416)"

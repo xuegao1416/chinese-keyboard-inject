@@ -1,0 +1,122 @@
+# cki_probe.txt -- gates 4 (behaviour) + 5 (visual) for stock pokeemerald-expansion
+# 1.9.4 (commit 2e656274, sha256 a0431ec4...), the corpus BASE CASE: an
+# expansion host with NO localisation of src/naming_screen.c and NO Chinese font.
+#
+# Route (discovered in attempt1, no debug menu needed): the very first naming
+# screen in a stock Emerald is the PLAYER-NAME screen during the scripted intro,
+# so cold boot -> START -> A (New) -> mash A reaches it. sNamingScreen pointer at
+# 0x2036240 goes live (0x020191D4) and the lock word reads 1111.
+# WARNING learned in attempt1: on this screen START is the stock "END/OK" key, so
+# do not press START here (it commits the name and leaves the screen).
+#
+# NS literal = resolver.naming_screen_global. Harness default key timing
+# (2 down / 120 up) -- do not tune.
+
+ptr NS 0x2036240
+
+frames 240
+key START
+frames 90
+key A
+frames 120
+untillive NS 0x2000000 0x2040000 60 A
+frames 180
+
+text "naming_reached NS_ptr="
+peek 0x2036240 4 be
+text " page="
+peek NS+0x1e22 1
+text " cid="
+peek NS+0x1e23 1
+text " lock="
+peek NS+0x1e26 2 be
+text " name="
+peek NS+0x1800 8
+text "\n"
+shot 01_naming
+
+# walk onto the PAGE-role cell
+repeat 8 key RIGHT
+frames 60
+text "at_page page="
+peek NS+0x1e22 1
+text " cid="
+peek NS+0x1e23 1
+text " lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot 02_at_page
+
+# press A -> enter CN mode (adapter locks input)
+key A
+frames 60
+text "locked page="
+peek NS+0x1e22 1
+text " lock="
+peek NS+0x1e26 2 be
+text " name="
+peek NS+0x1800 8
+text "\n"
+shot 03_locked_grid
+
+# add up to three double-byte CN chars
+key A
+frames 60
+text "cn1 name="
+peek NS+0x1800 8
+text " lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot 04_cn1
+
+key A
+frames 60
+text "cn2 name="
+peek NS+0x1800 8
+text "\n"
+shot 05_cn2
+
+key A
+frames 60
+text "cn3 name="
+peek NS+0x1800 8
+text "\n"
+shot 06_cn3
+
+# fourth press -- boundary / possible rejection (host length differs)
+key A
+frames 60
+text "cn4 name="
+peek NS+0x1800 8
+text "\n"
+shot 07_cn4
+
+# B deletes a whole double-byte char
+key B
+frames 60
+text "after_delete name="
+peek NS+0x1800 8
+text " lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot 08_delete
+
+# SELECT unlocks the adapter -> stock input resumes, lock word -> 0000
+key SELECT
+frames 60
+text "after_select lock="
+peek NS+0x1e26 2 be
+text " page="
+peek NS+0x1e22 1
+text " name="
+peek NS+0x1800 8
+text "\n"
+shot 09_after_select
+
+# re-lock to show the state machine is repeatable
+key A
+frames 60
+text "relock lock="
+peek NS+0x1e26 2 be
+text "\n"
+shot 10_back_locked

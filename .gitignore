@@ -1,0 +1,29 @@
+# ---- toolchain / build intermediates -------------------------------------
+*.gba
+*.elf
+*.o
+*.a
+*.bin
+*.map
+build/
+__pycache__/
+*.pyc
+
+# ---- sample corpus: local only, never published ---------------------------
+# test_roms/ is our internal workbench: third-party ROMs, upstream clones,
+# patched outputs, and the per-host capture trees (4.9k PNGs) bound to them by
+# sha256.  The published evidence trail is qa/ - reports, logs, montages and
+# the validated-input ledger - which carries no ROM bytes.
+# A public checkout therefore has nothing to re-hash: verify_capture_binding.py
+# reports "ROM missing" rather than silently passing.
+test_roms/
+
+*.zip
+*.7z
+
+# ---- player package output: rebuilt, not committed ------------------------
+# tools/build_windows_package.py writes these.  The ~50 MB of vendored clang
+# exes belong in a release asset, not in git history; what is authoritative is
+# the pin (PINNED_CLANG) plus --verify, so anyone can rebuild the same package.
+dist/
+toolchain/

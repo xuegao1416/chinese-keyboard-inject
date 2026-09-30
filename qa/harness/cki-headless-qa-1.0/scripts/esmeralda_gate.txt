@@ -1,0 +1,40 @@
+# esmeralda_gate.txt -- visual gate for the CKI-patched Esmeralda (PT-BR) ROM.
+# NS cell comes from reports_full/esmeralda_ptbr_ci45.json:
+#   resolver.naming_screen_global = 0x2036244
+# Key timings are the harness defaults (2 down / 120 up). Do not tune. See PITFALLS.md #2.
+
+ptr NS 0x02036244
+
+frames 600
+untillive NS 0x02000000 0x02040000 40 A
+frames 180
+
+text "naming_reached name="
+peek NS+0x1800 10
+text "\n"
+shot es_1_naming
+
+# walk the stock cursor onto the PAGE label and enter Chinese mode
+repeat 8 key RIGHT
+key A
+frames 60
+shot es_2_cn
+
+text "after_A name="
+peek NS+0x1800 10
+text "\n"
+key A
+frames 60
+shot es_3_picked
+
+key A
+frames 60
+shot es_4_picked
+
+key A
+frames 60
+shot es_5_picked
+
+key B
+frames 60
+shot es_6_back

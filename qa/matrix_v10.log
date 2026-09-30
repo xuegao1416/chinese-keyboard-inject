@@ -1,0 +1,146 @@
+{
+  "rom": "pokeemerald-ch_modern_build.gba",
+  "size": 16777216,
+  "sha256": "280eeb2f24dbdf1413a8e7977b46fc7684f4c26499669dbbe24e9106eccb562c",
+  "status": "RESOLVED_AND_ORACLE_CONFIRMED",
+  "family": "modern-dataflow-v37",
+  "sites": {
+    "character": "0x13ab84",
+    "page": "0x13abf8",
+    "backspace": "0x13ac28",
+    "ok": "0x13ac4c",
+    "handle": "0x13aad8",
+    "delete": "0x13b104",
+    "getchar": "0x13b1c8",
+    "flash": "0x139ee8",
+    "lr_frame": "0x13989e",
+    "handler_table": "0x717838",
+    "naming_screen_global": "0x2036240",
+    "sprites_global": "0x203abb0",
+    "keyboard_data": "0x717524"
+  },
+  "gmain": "0x3004c40",
+  "draw_text_entry": "0x813b431",
+  "externals": {
+    "PlaySE": "0x81ae885",
+    "FillWindowPixelBuffer": "0x81e26d9",
+    "PutWindowTilemap": "0x81e2285",
+    "CopyWindowToVram": "0x81e21ad",
+    "AddTextPrinterParameterized3": "0x812d995"
+  },
+  "free_space": {
+    "start": "0x4be260",
+    "size": "0x69a4",
+    "candidates": 3
+  },
+  "free_space_ok": true,
+  "structural_precheck_ok": true,
+  "oracle": {
+    "agree": 17,
+    "total": 17,
+    "pass": true,
+    "mismatches": []
+  },
+  "map": "D:\\LP\\roms\\test_matrix\\pokeemerald-ch_modern_build.map"
+}
+free-space resolver: no uniform 0x00/0xFF run of 26000 bytes within 0x3f0000 of 0x73ca2c
+{
+  "rom": "pokeemerald-rogue_release_build.gba",
+  "size": 33554432,
+  "sha256": "d1207695d391fd461cbe0c67cd1b8cf651b1fd28996028a2121faf2d883a5801",
+  "status": "RESOLVED_AND_ORACLE_CONFIRMED",
+  "family": "modern-dataflow-v37",
+  "sites": {
+    "character": "0xe31f4",
+    "page": "0xe3240",
+    "backspace": "0xe3268",
+    "ok": "0xe328c",
+    "handle": "0xe31a4",
+    "delete": "0xe37e0",
+    "getchar": "0xe3714",
+    "flash": "0xe2604",
+    "lr_frame": "0xe2056",
+    "handler_table": "0x73ca2c",
+    "naming_screen_global": "0x203c8e8",
+    "sprites_global": "0x202062c",
+    "keyboard_data": "0x73c950"
+  },
+  "gmain": "0x3003390",
+  "draw_text_entry": "0x80e1f31",
+  "externals": {
+    "PlaySE": "0x80a0155",
+    "FillWindowPixelBuffer": "0x8003c91",
+    "PutWindowTilemap": "0x80037d5",
+    "CopyWindowToVram": "0x80036a1",
+    "AddTextPrinterParameterized3": "0x819367d"
+  },
+  "free_space": "no injector-sized uniform run",
+  "free_space_ok": false,
+  "structural_precheck_ok": true,
+  "oracle": {
+    "agree": 17,
+    "total": 17,
+    "pass": true,
+    "mismatches": []
+  },
+  "map": "D:\\LP\\roms\\test_matrix\\pokeemerald-rogue_release_build.map"
+}
+{
+  "rom": "Emerald-Gauntlet_v1.0.gba",
+  "size": 33554432,
+  "sha256": "d32c251e48ba98238ac6a5d348e4ee7b8e7799dfec1417fba86b6267589107a7",
+  "status": "RESOLVED",
+  "family": "modern-dataflow-v37",
+  "sites": {
+    "character": "0x167b5c",
+    "page": "0x167bd0",
+    "backspace": "0x167c00",
+    "ok": "0x167c24",
+    "handle": "0x167ab0",
+    "delete": "0x1680d0",
+    "getchar": "0x168194",
+    "flash": "0x166ec4",
+    "lr_frame": "0x16687a",
+    "handler_table": "0x639770",
+    "naming_screen_global": "0x2035650",
+    "sprites_global": "0x203a1d0",
+    "keyboard_data": "0x63945c"
+  },
+  "gmain": "0x30014b4",
+  "draw_text_entry": "0x81683fd",
+  "externals": {
+    "PlaySE": "0x81ea449",
+    "FillWindowPixelBuffer": "0x8008f41",
+    "PutWindowTilemap": "0x8008aed",
+    "CopyWindowToVram": "0x8008a15",
+    "AddTextPrinterParameterized3": "0x815ac0d"
+  },
+  "free_space": {
+    "start": "0x45fdec",
+    "size": "0xd504",
+    "candidates": 1
+  },
+  "free_space_ok": true,
+  "structural_precheck_ok": true,
+  "oracle": null,
+  "map": null
+}
+{
+  "rom": "LightPlatinum_v062.gba",
+  "size": 33554432,
+  "sha256": "d5a147ab4d106d90a031e06f3a9a6c26b7f65fada81a11a4346291a6a874d1e0",
+  "status": "REJECTED_BY_RESOLVER",
+  "reason": "RuntimeError: handler table @0x879ea98 has no exact literal xref; table-4 referenced from 2 functions ['0x18e880', '0x18e968'] - ambiguous",
+  "map": null
+}
+{
+  "rom": "v048_known_good.gba",
+  "size": 33554432,
+  "sha256": "4d14211d166a431a74fa61277a2b68666d2e7b144fef3aaa743ea35cfc567f88",
+  "status": "REJECTED_BY_RESOLVER",
+  "reason": "RuntimeError: handler table @0x878bc80 has no exact literal xref; table-4 referenced from 2 functions ['0x18e838', '0x18e920'] - ambiguous",
+  "map": null
+}
+
+5 ROM(s): pokeemerald-ch_modern_build.gba=RESOLVED_AND_ORACLE_CONFIRMED, pokeemerald-rogue_release_build.gba=RESOLVED_AND_ORACLE_CONFIRMED, Emerald-Gauntlet_v1.0.gba=RESOLVED, LightPlatinum_v062.gba=REJECTED_BY_RESOLVER, v048_known_good.gba=REJECTED_BY_RESOLVER
+note: not confirmed by a map oracle - treat as unvalidated

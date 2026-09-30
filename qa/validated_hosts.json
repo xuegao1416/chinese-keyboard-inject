@@ -1,0 +1,796 @@
+{
+ "format": "CKI-VALIDATED-HOSTS1",
+ "note": "Inputs on which the current injector has been through the full gate ladder of docs/QA_ACCEPTANCE_STANDARD.md. Only sha256 is stored - no ROM is distributed. Add an entry only after runtime + behaviour + visual QA on that exact input hash. Each entry carries font_gate: \"entered\" means the runtime CJK-font gate measured a real Chinese face on that host and Chinese mode opens; \"refused\" means the adapter installs, measures, finds no face, and hands the key back, so the ROM keeps its stock keyboard and never renders Latin stand-ins for Hanzi. Both classes are validated; neither claim is inferred from the other, and each entry names the capture that proves it.",
+ "hosts": [
+  {
+   "sha256": "831e9ddcb18e417c3f67ff848240ea2a86280aa9aa0051b7848c0d93eb3ab613",
+   "rom": "LightPlatinum_v012_mapheader_restore.gba",
+   "description": "CKI corpus host LightPlatinum_v012_mapheader_restore",
+   "output_sha256": "c6bf6773bce2157f374394dadf01b93553b59865047b9e2d866703f09f408f0a",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/LightPlatinum_v012_mapheader_restore/run6_patched/",
+    "test_roms/qa_20260926/LightPlatinum_v012_mapheader_restore/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/LightPlatinum_v012_mapheader_restore/run6_clean/artifact.txt",
+    "test_roms/reports_full/LightPlatinum_v012_mapheader_restore.json",
+    "test_roms/qa_20260926/LightPlatinum_v012_mapheader_restore/boundary_final_patched/",
+    "test_roms/qa_20260926/LightPlatinum_v012_mapheader_restore/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/LightPlatinum_v012_mapheader_restore/boundary_final_clean/"
+   ],
+   "note": "Behaviour proof on the exact patched bytes: lock word C000 after the grid is reached, name buffer 010001000100FFFF after three CN presses, lock back to 0000 after SELECT; the same-route control on the unpatched input shows none of these. Runtime font gate: ENTERED, so the adapter measured a real CJK face in this host before letting Chinese mode open. Visual gate: screenshots in the patched evidence dir show the 4x8 grid overlay, cursor alignment and the Chinese/stock transition. Whether the cells render real Hanzi depends on this host carrying a CJK font - the payload ships no glyph tiles - and is graded A/B by hand in test_roms/README.md section 15; this entry does not claim either way. Gate 4's exhaustive boundary list is also run per host (27 steps: R/L page change, 223<->0 wrap, Page-Tab unlock, pair-vs-Latin delete discriminator, mixed-buffer overflow rejection) and the entry is refused unless tools/check_boundary_route.py passes it against these same bytes. That route's locked-grid frame is byte-identical to the grid frame named above, so the visual gate covers both routes rather than needing 27 more sign-offs per host (re-measured by tools/grid_frame_equivalence.py). Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "entered"
+  },
+  {
+   "sha256": "8e167538346ffe52059fdabee28820dafa1bcd5d83b0270c2f031f77efb61396",
+   "rom": "astral_emerald_v0.0.65.gba",
+   "description": "CKI corpus host astral_emerald_v0.0.65",
+   "output_sha256": "a7ed1f20c7a36c5b4e9f0eb10f5c21fd87e7cd02ae9e5f74016ec2f1db6ace31",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/astral_emerald_v0.0.65/run6_patched/",
+    "test_roms/qa_20260926/astral_emerald_v0.0.65/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/astral_emerald_v0.0.65/run6_clean/artifact.txt",
+    "test_roms/reports_full/astral_emerald_v0.0.65.json",
+    "test_roms/qa_20260926/astral_emerald_v0.0.65/boundary_final_patched/",
+    "test_roms/qa_20260926/astral_emerald_v0.0.65/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/astral_emerald_v0.0.65/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "e434c5cb52c8681d6342659baf26c5650d98d2cdb922cb3bc38fbfb4d95c49bf",
+   "rom": "auri_soundtype.gba",
+   "description": "CKI corpus host auri_soundtype",
+   "output_sha256": "c47e94c252f0e8efe9e471e75e6dc741b7415fab241c27754ac0c02024e06182",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/auri_soundtype/run6_patched/",
+    "test_roms/qa_20260926/auri_soundtype/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/auri_soundtype/run6_clean/artifact.txt",
+    "test_roms/reports_full/auri_soundtype.json",
+    "test_roms/qa_20260926/auri_soundtype/boundary_final_patched/",
+    "test_roms/qa_20260926/auri_soundtype/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/auri_soundtype/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "6d1d421bf9ef9936481f6db02116ded2561dac0af05f1bec71c56adef6d19400",
+   "rom": "bubble128_cn.gba",
+   "description": "CKI corpus host bubble128_cn",
+   "output_sha256": "c84984ac36e0be4fb17a5bb7fb459e929d8131d0a0436179b4353f7dc659293e",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/bubble128_cn/run6_patched/",
+    "test_roms/qa_20260926/bubble128_cn/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/bubble128_cn/run6_clean/artifact.txt",
+    "test_roms/reports_full/bubble128_cn.json",
+    "test_roms/qa_20260926/bubble128_cn/boundary_final_patched/",
+    "test_roms/qa_20260926/bubble128_cn/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/bubble128_cn/boundary_final_clean/"
+   ],
+   "note": "Behaviour proof on the exact patched bytes: lock word C000 after the grid is reached, name buffer 010001000100FFFF after three CN presses, lock back to 0000 after SELECT; the same-route control on the unpatched input shows none of these. Runtime font gate: ENTERED, so the adapter measured a real CJK face in this host before letting Chinese mode open. Visual gate: screenshots in the patched evidence dir show the 4x8 grid overlay, cursor alignment and the Chinese/stock transition. Whether the cells render real Hanzi depends on this host carrying a CJK font - the payload ships no glyph tiles - and is graded A/B by hand in test_roms/README.md section 15; this entry does not claim either way. Gate 4's exhaustive boundary list is also run per host (27 steps: R/L page change, 223<->0 wrap, Page-Tab unlock, pair-vs-Latin delete discriminator, mixed-buffer overflow rejection) and the entry is refused unless tools/check_boundary_route.py passes it against these same bytes. That route's locked-grid frame is byte-identical to the grid frame named above, so the visual gate covers both routes rather than needing 27 more sign-offs per host (re-measured by tools/grid_frame_equivalence.py). Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "entered"
+  },
+  {
+   "sha256": "00ab134d147529ffdf38676568803197504cf48d93cb5bf4d519a73d4d94b604",
+   "rom": "esmeralda_ptbr_ci45.gba",
+   "description": "CKI corpus host esmeralda_ptbr_ci45",
+   "output_sha256": "bafb7efd132a6f298b4b05312d8781b2a04b4d4a289864977c25b170f285ac0c",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/esmeralda_ptbr_ci45/run6_patched/",
+    "test_roms/qa_20260926/esmeralda_ptbr_ci45/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/esmeralda_ptbr_ci45/run6_clean/artifact.txt",
+    "test_roms/reports_full/esmeralda_ptbr_ci45.json",
+    "test_roms/qa_20260926/esmeralda_ptbr_ci45/boundary_final_patched/",
+    "test_roms/qa_20260926/esmeralda_ptbr_ci45/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/esmeralda_ptbr_ci45/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "276ce8fdd143982ed26fe89a81da17f68e3a4c1f4b4c0e6177e7490c762b91c7",
+   "rom": "exmingyan_zh.gba",
+   "description": "CKI corpus host exmingyan_zh",
+   "output_sha256": "23659bbda4a46e2c6bd11f510bede78ae5d2de275ecd30f057cbf3fd005539fe",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/exmingyan_zh/run6_patched/",
+    "test_roms/qa_20260926/exmingyan_zh/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/exmingyan_zh/run6_clean/artifact.txt",
+    "test_roms/reports_full/exmingyan_zh.json",
+    "test_roms/qa_20260926/exmingyan_zh/boundary_final_patched/",
+    "test_roms/qa_20260926/exmingyan_zh/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/exmingyan_zh/boundary_final_clean/"
+   ],
+   "note": "Behaviour proof on the exact patched bytes: lock word C000 after the grid is reached, name buffer 010001000100FFFF after three CN presses, lock back to 0000 after SELECT; the same-route control on the unpatched input shows none of these. Runtime font gate: ENTERED, so the adapter measured a real CJK face in this host before letting Chinese mode open. Visual gate: screenshots in the patched evidence dir show the 4x8 grid overlay, cursor alignment and the Chinese/stock transition. Whether the cells render real Hanzi depends on this host carrying a CJK font - the payload ships no glyph tiles - and is graded A/B by hand in test_roms/README.md section 15; this entry does not claim either way. Gate 4's exhaustive boundary list is also run per host (27 steps: R/L page change, 223<->0 wrap, Page-Tab unlock, pair-vs-Latin delete discriminator, mixed-buffer overflow rejection) and the entry is refused unless tools/check_boundary_route.py passes it against these same bytes. That route's locked-grid frame is byte-identical to the grid frame named above, so the visual gate covers both routes rather than needing 27 more sign-offs per host (re-measured by tools/grid_frame_equivalence.py). Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "entered"
+  },
+  {
+   "sha256": "b51980aad90d0c8dd21c6f78e6fc671579335e55a276fed25dcbcb856fc0cbb0",
+   "rom": "modern_emerald_dev.gba",
+   "description": "CKI corpus host modern_emerald_dev",
+   "output_sha256": "b4bb1778f371252fa787669bec5d5fbf4c82a5b89c30435feed36337e80974c8",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/modern_emerald_dev/run6_patched/",
+    "test_roms/qa_20260926/modern_emerald_dev/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/modern_emerald_dev/run6_clean/artifact.txt",
+    "test_roms/reports_full/modern_emerald_dev.json",
+    "test_roms/qa_20260926/modern_emerald_dev/boundary_final_patched/",
+    "test_roms/qa_20260926/modern_emerald_dev/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/modern_emerald_dev/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "280eeb2f24dbdf1413a8e7977b46fc7684f4c26499669dbbe24e9106eccb562c",
+   "rom": "pokeemerald-ch_modern_build.gba",
+   "description": "GoldenCaterpie/pokeemerald-ch built with `make modern` (arm-none-eabi-gcc 13.2.1), 16 MiB",
+   "output_sha256": "d997d8c7a1f0d8f89851c2a683fcbdd1684b4f2e7b983f050c695f33c7d6d9a5",
+   "output_sha256_gnu": "02ffad6d252cb60ba16feaa4043ab4512b8f6e385479035d7ef24043f97d36c1",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/pokeemerald-ch_modern_build/run6_patched/",
+    "test_roms/qa_20260926/pokeemerald-ch_modern_build/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/pokeemerald-ch_modern_build/run6_clean/artifact.txt",
+    "test_roms/reports_full/pokeemerald-ch_modern_build.json",
+    "test_roms/qa_20260926/pokeemerald-ch_modern_build/boundary_final_patched/",
+    "test_roms/qa_20260926/pokeemerald-ch_modern_build/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/pokeemerald-ch_modern_build/boundary_final_clean/"
+   ],
+   "note": "Behaviour proof on the exact patched bytes: lock word C000 after the grid is reached, name buffer 010001000100FFFF after three CN presses, lock back to 0000 after SELECT; the same-route control on the unpatched input shows none of these. Runtime font gate: ENTERED, so the adapter measured a real CJK face in this host before letting Chinese mode open. Visual gate: screenshots in the patched evidence dir show the 4x8 grid overlay, cursor alignment and the Chinese/stock transition. Whether the cells render real Hanzi depends on this host carrying a CJK font - the payload ships no glyph tiles - and is graded A/B by hand in test_roms/README.md section 15; this entry does not claim either way. Gate 4's exhaustive boundary list is also run per host (27 steps: R/L page change, 223<->0 wrap, Page-Tab unlock, pair-vs-Latin delete discriminator, mixed-buffer overflow rejection) and the entry is refused unless tools/check_boundary_route.py passes it against these same bytes. That route's locked-grid frame is byte-identical to the grid frame named above, so the visual gate covers both routes rather than needing 27 more sign-offs per host (re-measured by tools/grid_frame_equivalence.py). Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "entered"
+  },
+  {
+   "sha256": "d1207695d391fd461cbe0c67cd1b8cf651b1fd28996028a2121faf2d883a5801",
+   "rom": "pokeemerald-rogue_release_build.gba",
+   "description": "CKI corpus host pokeemerald-rogue_release_build",
+   "output_sha256": "858f949d25c476d0fc8d444ad3342299f3861ac8712625bbfdbfd427a76dcd73",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/pokeemerald-rogue_release_build/run6_patched/",
+    "test_roms/qa_20260926/pokeemerald-rogue_release_build/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/pokeemerald-rogue_release_build/run6_clean/artifact.txt",
+    "test_roms/reports_full/pokeemerald-rogue_release_build.json",
+    "test_roms/qa_20260926/pokeemerald-rogue_release_build/boundary_final_patched/",
+    "test_roms/qa_20260926/pokeemerald-rogue_release_build/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/pokeemerald-rogue_release_build/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "68367fa64f735c7b5aa347a2855d4b6cc34e5ad98b75558aedc6bbf8362a5fe7",
+   "rom": "quetzal_alpha8v2_cn.gba",
+   "description": "CKI corpus host quetzal_alpha8v2_cn",
+   "output_sha256": "81e5fb20c8e9610f071853f77d257099ded6c3c142e8a3da39f02f62d97ba8ce",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/quetzal_alpha8v2_cn/run6_patched/",
+    "test_roms/qa_20260926/quetzal_alpha8v2_cn/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/quetzal_alpha8v2_cn/run6_clean/artifact.txt",
+    "test_roms/reports_full/quetzal_alpha8v2_cn.json",
+    "test_roms/qa_20260926/quetzal_alpha8v2_cn/boundary_final_patched/",
+    "test_roms/qa_20260926/quetzal_alpha8v2_cn/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/quetzal_alpha8v2_cn/boundary_final_clean/"
+   ],
+   "note": "Behaviour proof on the exact patched bytes: lock word C000 after the grid is reached, name buffer 010001000100FFFF after three CN presses, lock back to 0000 after SELECT; the same-route control on the unpatched input shows none of these. Runtime font gate: ENTERED, so the adapter measured a real CJK face in this host before letting Chinese mode open. Visual gate: screenshots in the patched evidence dir show the 4x8 grid overlay, cursor alignment and the Chinese/stock transition. Whether the cells render real Hanzi depends on this host carrying a CJK font - the payload ships no glyph tiles - and is graded A/B by hand in test_roms/README.md section 15; this entry does not claim either way. Gate 4's exhaustive boundary list is also run per host (27 steps: R/L page change, 223<->0 wrap, Page-Tab unlock, pair-vs-Latin delete discriminator, mixed-buffer overflow rejection) and the entry is refused unless tools/check_boundary_route.py passes it against these same bytes. That route's locked-grid frame is byte-identical to the grid frame named above, so the visual gate covers both routes rather than needing 27 more sign-offs per host (re-measured by tools/grid_frame_equivalence.py). Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "entered"
+  },
+  {
+   "sha256": "60dc2665f0fde6ad2e28f8f0f7720788c25c8e8cd41522147575a0998dbb9f55",
+   "rom": "random_battles_v1.1.gba",
+   "description": "CKI corpus host random_battles_v1.1",
+   "output_sha256": "0cdcabbb60c9b591a1f20963acb2610c8b9b13fb9bad754a7fe6bedf9e5a8353",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/random_battles_v1.1/run6_patched/",
+    "test_roms/qa_20260926/random_battles_v1.1/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/random_battles_v1.1/run6_clean/artifact.txt",
+    "test_roms/reports_full/random_battles_v1.1.json",
+    "test_roms/qa_20260926/random_battles_v1.1/boundary_final_patched/",
+    "test_roms/qa_20260926/random_battles_v1.1/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/random_battles_v1.1/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "8ccddc54c42895c8fe20bf6bf76bb9fca17a030124e0aa7970dd0d22045a01a6",
+   "rom": "rhcn_expansion.gba",
+   "description": "CKI corpus host rhcn_expansion",
+   "output_sha256": "c346790f47c749340fcf9dacd8fe5ca3ad88ccf7f4b65f9c1df479bd2245a841",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/rhcn_expansion/run6_patched/",
+    "test_roms/qa_20260926/rhcn_expansion/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/rhcn_expansion/run6_clean/artifact.txt",
+    "test_roms/reports_full/rhcn_expansion.json",
+    "test_roms/qa_20260926/rhcn_expansion/boundary_final_patched/",
+    "test_roms/qa_20260926/rhcn_expansion/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/rhcn_expansion/boundary_final_clean/"
+   ],
+   "note": "Behaviour proof on the exact patched bytes: lock word C000 after the grid is reached, name buffer 010001000100FFFF after three CN presses, lock back to 0000 after SELECT; the same-route control on the unpatched input shows none of these. Runtime font gate: ENTERED, so the adapter measured a real CJK face in this host before letting Chinese mode open. Visual gate: screenshots in the patched evidence dir show the 4x8 grid overlay, cursor alignment and the Chinese/stock transition. Whether the cells render real Hanzi depends on this host carrying a CJK font - the payload ships no glyph tiles - and is graded A/B by hand in test_roms/README.md section 15; this entry does not claim either way. Gate 4's exhaustive boundary list is also run per host (27 steps: R/L page change, 223<->0 wrap, Page-Tab unlock, pair-vs-Latin delete discriminator, mixed-buffer overflow rejection) and the entry is refused unless tools/check_boundary_route.py passes it against these same bytes. That route's locked-grid frame is byte-identical to the grid frame named above, so the visual gate covers both routes rather than needing 27 more sign-offs per host (re-measured by tools/grid_frame_equivalence.py). Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "entered"
+  },
+  {
+   "sha256": "cb16244a6b8343a787de42bfc03375abc3a118cdc75858f3c3a79bf86b235745",
+   "rom": "rogue_zh.gba",
+   "description": "CKI corpus host rogue_zh",
+   "output_sha256": "0af8f3a9e13737867d0f930c7d1dc760af4878998df1ba6e7ca8651e2355a793",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/rogue_zh/run6_patched/",
+    "test_roms/qa_20260926/rogue_zh/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/rogue_zh/run6_clean/artifact.txt",
+    "test_roms/reports_full/rogue_zh.json",
+    "test_roms/qa_20260926/rogue_zh/boundary_final_patched/",
+    "test_roms/qa_20260926/rogue_zh/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/rogue_zh/boundary_final_clean/"
+   ],
+   "note": "Behaviour proof on the exact patched bytes: lock word C000 after the grid is reached, name buffer 010001000100FFFF after three CN presses, lock back to 0000 after SELECT; the same-route control on the unpatched input shows none of these. Runtime font gate: ENTERED, so the adapter measured a real CJK face in this host before letting Chinese mode open. Visual gate: screenshots in the patched evidence dir show the 4x8 grid overlay, cursor alignment and the Chinese/stock transition. Whether the cells render real Hanzi depends on this host carrying a CJK font - the payload ships no glyph tiles - and is graded A/B by hand in test_roms/README.md section 15; this entry does not claim either way. Gate 4's exhaustive boundary list is also run per host (27 steps: R/L page change, 223<->0 wrap, Page-Tab unlock, pair-vs-Latin delete discriminator, mixed-buffer overflow rejection) and the entry is refused unless tools/check_boundary_route.py passes it against these same bytes. That route's locked-grid frame is byte-identical to the grid frame named above, so the visual gate covers both routes rather than needing 27 more sign-offs per host (re-measured by tools/grid_frame_equivalence.py). Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "entered"
+  },
+  {
+   "sha256": "add6c3c9fcd15d8b479692d3c9a1deb53c346a17fe1b3398fa282aa0706282f3",
+   "rom": "stock_expansion_1103.gba",
+   "description": "CKI corpus host stock_expansion_1103",
+   "output_sha256": "9fadddd532221ad81b7f1f84fa1b76386f2432bf8dca3c728d73d5704f61ae84",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/stock_expansion_1103/run6_patched/",
+    "test_roms/qa_20260926/stock_expansion_1103/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/stock_expansion_1103/run6_clean/artifact.txt",
+    "test_roms/reports_full/stock_expansion_1103.json",
+    "test_roms/qa_20260926/stock_expansion_1103/boundary_final_patched/",
+    "test_roms/qa_20260926/stock_expansion_1103/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/stock_expansion_1103/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "3e10bbdbf9c5e461095296459bfe87c98a70b70396f1d7fd5f1940ba3239ed78",
+   "rom": "stock_expansion_1114.gba",
+   "description": "CKI corpus host stock_expansion_1114",
+   "output_sha256": "f78f797aedaf53217ab21a0dff3f5b0def90367853f5c5ab3692b17e66ee2fa2",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/stock_expansion_1114/run6_patched/",
+    "test_roms/qa_20260926/stock_expansion_1114/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/stock_expansion_1114/run6_clean/artifact.txt",
+    "test_roms/reports_full/stock_expansion_1114.json",
+    "test_roms/qa_20260926/stock_expansion_1114/boundary_final_patched/",
+    "test_roms/qa_20260926/stock_expansion_1114/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/stock_expansion_1114/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "cb689ce6b6f53c2af602a7a0b05e23c4bdb3c2c2925b82557dbc07013a87aba5",
+   "rom": "stock_expansion_1123.gba",
+   "description": "CKI corpus host stock_expansion_1123",
+   "output_sha256": "96cb57b0e61860c0b8e5001c4076b4ade351f2aeb5db063c72704f7d845009eb",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/stock_expansion_1123/run6_patched/",
+    "test_roms/qa_20260926/stock_expansion_1123/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/stock_expansion_1123/run6_clean/artifact.txt",
+    "test_roms/reports_full/stock_expansion_1123.json",
+    "test_roms/qa_20260926/stock_expansion_1123/boundary_final_patched/",
+    "test_roms/qa_20260926/stock_expansion_1123/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/stock_expansion_1123/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "cb0cf0f41fd7ec27a11a411599a0a8549fd242215328d02eabc626dc2c5a0904",
+   "rom": "stock_expansion_1134.gba",
+   "description": "CKI corpus host stock_expansion_1134",
+   "output_sha256": "d88d4f0dc0db96dc35cdf1a80bc9749d40529aa440a9e49a4cd29b1429c91f89",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/stock_expansion_1134/run6_patched/",
+    "test_roms/qa_20260926/stock_expansion_1134/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/stock_expansion_1134/run6_clean/artifact.txt",
+    "test_roms/reports_full/stock_expansion_1134.json",
+    "test_roms/qa_20260926/stock_expansion_1134/boundary_final_patched/",
+    "test_roms/qa_20260926/stock_expansion_1134/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/stock_expansion_1134/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "d5d3ee0e8b78773083b26bcc66c48ca3ad113d723d4c2b14317db762f2a63b6e",
+   "rom": "stock_expansion_1144.gba",
+   "description": "CKI corpus host stock_expansion_1144",
+   "output_sha256": "4698bc097a885bf5c75a33ef9684bbec025d1df756b1a86b0d261639cc90f60e",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/stock_expansion_1144/run6_patched/",
+    "test_roms/qa_20260926/stock_expansion_1144/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/stock_expansion_1144/run6_clean/artifact.txt",
+    "test_roms/reports_full/stock_expansion_1144.json",
+    "test_roms/qa_20260926/stock_expansion_1144/boundary_final_patched/",
+    "test_roms/qa_20260926/stock_expansion_1144/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/stock_expansion_1144/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "ebd59f13b0fea5e155722be3eac83d56e691bad7708fa0bccae08cba3cf6b752",
+   "rom": "stock_expansion_1153.gba",
+   "description": "CKI corpus host stock_expansion_1153",
+   "output_sha256": "a8f3b50ebe78b43ad4c08670376bb88576bfe3e1c4a0366e5be10b06a6d46b2e",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/stock_expansion_1153/run6_patched/",
+    "test_roms/qa_20260926/stock_expansion_1153/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/stock_expansion_1153/run6_clean/artifact.txt",
+    "test_roms/reports_full/stock_expansion_1153.json",
+    "test_roms/qa_20260926/stock_expansion_1153/boundary_final_patched/",
+    "test_roms/qa_20260926/stock_expansion_1153/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/stock_expansion_1153/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "792d20921f493191ed9f13baf2df0c5e151b30accfba4b20a190141be2615cc9",
+   "rom": "stock_expansion_1164.gba",
+   "description": "CKI corpus host stock_expansion_1164",
+   "output_sha256": "7e0b2c23c967f08cc0dff8d7b526fe11caa69f59153455faf5726671784f4a3a",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/stock_expansion_1164/run6_patched/",
+    "test_roms/qa_20260926/stock_expansion_1164/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/stock_expansion_1164/run6_clean/artifact.txt",
+    "test_roms/reports_full/stock_expansion_1164.json",
+    "test_roms/qa_20260926/stock_expansion_1164/boundary_final_patched/",
+    "test_roms/qa_20260926/stock_expansion_1164/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/stock_expansion_1164/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "fdc30e0eef963619f2e316c5285f7e83003d0618bd03388ab5214b0ddb2eb821",
+   "rom": "stock_expansion_1170.gba",
+   "description": "CKI corpus host stock_expansion_1170",
+   "output_sha256": "119cee9b79de588c3a28b1d62772ffb5a0d790d7dc3fd1fcc37a161fa5104aee",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/stock_expansion_1170/run6_patched/",
+    "test_roms/qa_20260926/stock_expansion_1170/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/stock_expansion_1170/run6_clean/artifact.txt",
+    "test_roms/reports_full/stock_expansion_1170.json",
+    "test_roms/qa_20260926/stock_expansion_1170/boundary_final_patched/",
+    "test_roms/qa_20260926/stock_expansion_1170/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/stock_expansion_1170/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "ae33996629c4a11992ed0b8b091df32335078f31403dff885ff06f784d2db1a6",
+   "rom": "stock_expansion_174.gba",
+   "description": "CKI corpus host stock_expansion_174",
+   "output_sha256": "05cbb8f0067197eb54670f37a943a1676233cb0f29a6aa77262fd6e409c74ccb",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/stock_expansion_174/run6_patched/",
+    "test_roms/qa_20260926/stock_expansion_174/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/stock_expansion_174/run6_clean/artifact.txt",
+    "test_roms/reports_full/stock_expansion_174.json",
+    "test_roms/qa_20260926/stock_expansion_174/boundary_final_patched/",
+    "test_roms/qa_20260926/stock_expansion_174/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/stock_expansion_174/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "f1f24cefbcd9dc86b1b76ee467dfac6dea979351ee723d97542f1b6431f677bb",
+   "rom": "stock_expansion_186.gba",
+   "description": "CKI corpus host stock_expansion_186",
+   "output_sha256": "5f453ae9e628e45df5e63f33722bcfe34e6e4acd43f4a35b25a0a7c7036908eb",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/stock_expansion_186/run6_patched/",
+    "test_roms/qa_20260926/stock_expansion_186/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/stock_expansion_186/run6_clean/artifact.txt",
+    "test_roms/reports_full/stock_expansion_186.json",
+    "test_roms/qa_20260926/stock_expansion_186/boundary_final_patched/",
+    "test_roms/qa_20260926/stock_expansion_186/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/stock_expansion_186/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "a0431ec466626aeaea524948f2a4277172889e543b164b43ecdb1d3a88796f6f",
+   "rom": "stock_expansion_1_9_4.gba",
+   "description": "CKI corpus host stock_expansion_1_9_4",
+   "output_sha256": "d0dc9fe6c38ffbedfab4d87abd87d52ea0ac1c8d09264ae4e6fd037f4d595d32",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/stock_expansion_1_9_4/run6_patched/",
+    "test_roms/qa_20260926/stock_expansion_1_9_4/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/stock_expansion_1_9_4/run6_clean/artifact.txt",
+    "test_roms/reports_full/stock_expansion_1_9_4.json",
+    "test_roms/qa_20260926/stock_expansion_1_9_4/boundary_final_patched/",
+    "test_roms/qa_20260926/stock_expansion_1_9_4/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/stock_expansion_1_9_4/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  },
+  {
+   "sha256": "868b73a5a9ea02d9406215a7df9baf42a0650a97f51a0d11567a1c6cf441cf67",
+   "rom": "stock_expansion_master.gba",
+   "description": "CKI corpus host stock_expansion_master",
+   "output_sha256": "d0ef0e1d6d8e9f522b05b63055ba99636018568c63ab9bebdb8d2cc23fd3fa44",
+   "injector": "1.0 naked-ROM semantic API",
+   "gates": [
+    "resolver",
+    "injection",
+    "runtime",
+    "behavior",
+    "visual"
+   ],
+   "evidence": [
+    "test_roms/qa_20260926/stock_expansion_master/run6_patched/",
+    "test_roms/qa_20260926/stock_expansion_master/run6_patched/artifact.txt",
+    "test_roms/qa_20260926/stock_expansion_master/run6_clean/artifact.txt",
+    "test_roms/reports_full/stock_expansion_master.json",
+    "test_roms/qa_20260926/stock_expansion_master/boundary_final_patched/",
+    "test_roms/qa_20260926/stock_expansion_master/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/stock_expansion_master/boundary_final_clean/"
+   ],
+   "note": "Runtime font gate: REFUSED. This host's own font has no CJK face, so the adapter installs, measures the page it would have drawn, and hands the key back to the stock page swap - the ROM is playable with its original keyboard and never shows Latin stand-ins for Hanzi. Proof on the exact patched bytes: the probe capture log is byte-identical to the same-route control on the unpatched input (run6_patched vs run6_clean), neither contains a Chinese lock word (C000/C001/C0DF), and tools/check_refusal_pixels.py reports 0 novel pixels across every sampled frame of both routes, i.e. the refusal draws ink the stock ROM cannot show nowhere. Gate 4's 27-step boundary list is run per host and is graded for a refusal here - patched must equal its own control step for step - which tools/check_boundary_route.py asserts against these same bytes. Recorded 2026-09-27 by tools/record_validated_hosts.py.",
+   "font_gate": "refused"
+  }
+ ],
+ "excluded": [
+  {
+   "sha256": "95798b1e85ad0e8048f5a1bbb4484528daae45dd8260b21aeef57cfeea7632ce",
+   "rom": "PVPdalao_Pre2.gba",
+   "why": "input interface changed: naming keyboard grid is 4 rows x 14 columns (layout at 0x6d2c7c), not the stock 3 pages x 4 rows x 8 columns - this build replaced the keyboard the 4x8 Chinese grid overlays, so there is nothing here to inject into",
+   "reason": "Open-source Chinese PvP hack (author credit shown in-game). Its naming keyboard layout table stores the four symbol rows 14 bytes apart, so the 4x8 Chinese page the adapter writes would be read back with the wrong row stride. The visible grid was not photographed: this build auto-names the player in its custom arrival scene and the bedroom exit is blocked by moving boxes, so the naming screen is a route gap, not a behaviour failure.",
+   "evidence": [
+    "test_roms/reports_full/work/PVPdalao_Pre2.log",
+    "test_roms/reports_full/matrix.tsv",
+    "test_roms/roms/PVPdalao_Pre2.gba",
+    "test_roms/qa_20260926/PVPdalao_Pre2/refusal/"
+   ],
+   "recorded": "2026-09-27"
+  },
+  {
+   "sha256": "c8ea1310098d2f8d1fad8b11de80d221b952d4553d2e47f00084c8eab8bed351",
+   "rom": "PVPdalao_Pre3.gba",
+   "why": "input interface changed: naming keyboard grid is 4 rows x 14 columns (layout at 0x6d2c6c), not the stock 3 pages x 4 rows x 8 columns - this build replaced the keyboard the 4x8 Chinese grid overlays, so there is nothing here to inject into",
+   "reason": "Same keyboard table as PVPdalao_Pre2 at a different offset; the four symbol rows sit on a 14-byte stride. Not photographed for the same route reason.",
+   "evidence": [
+    "test_roms/reports_full/work/PVPdalao_Pre3.log",
+    "test_roms/reports_full/matrix.tsv",
+    "test_roms/roms/PVPdalao_Pre3.gba",
+    "test_roms/qa_20260926/PVPdalao_Pre3/refusal/"
+   ],
+   "recorded": "2026-09-27"
+  },
+  {
+   "sha256": "95e0275ad7193b272f60efe3c5fbba74364bece007ab4e35683b0100405f8522",
+   "rom": "PVPdalao_V1.0.gba",
+   "why": "input interface changed: naming keyboard grid is 4 rows x 14 columns (layout at 0x6d2c7c), not the stock 3 pages x 4 rows x 8 columns - this build replaced the keyboard the 4x8 Chinese grid overlays, so there is nothing here to inject into",
+   "reason": "Same 14-byte stride as the other PVPdalao builds. Not photographed for the same route reason.",
+   "evidence": [
+    "test_roms/reports_full/work/PVPdalao_V1.0.log",
+    "test_roms/reports_full/matrix.tsv",
+    "test_roms/roms/PVPdalao_V1.0.gba",
+    "test_roms/qa_20260926/PVPdalao_V1.0/refusal/"
+   ],
+   "recorded": "2026-09-27"
+  },
+  {
+   "sha256": "1f6a269cdee7900ffd2888f8abb607a5726dbebb9f5078a6e357cc36d314229b",
+   "rom": "PVPdalao_V1.1.gba",
+   "why": "input interface changed: naming keyboard grid is 4 rows x 14 columns (layout at 0x6d2fcc), not the stock 3 pages x 4 rows x 8 columns - this build replaced the keyboard the 4x8 Chinese grid overlays, so there is nothing here to inject into",
+   "reason": "Same 14-byte stride; verified byte-for-byte here: rows at 0x6d2fcc are a1a2a3a4a5 / a6a7a8a9aa / abacb5b6baae / b0b1b2b3b4 each zero-padded to 14, with non-keyboard data from +56. Not photographed for the same route reason.",
+   "evidence": [
+    "test_roms/reports_full/work/PVPdalao_V1.1.log",
+    "test_roms/reports_full/matrix.tsv",
+    "test_roms/roms/PVPdalao_V1.1.gba",
+    "test_roms/qa_20260926/PVPdalao_V1.1/refusal/"
+   ],
+   "recorded": "2026-09-27"
+  },
+  {
+   "sha256": "714946aee842d0de46eda56532346d8dcc188d17bddc301afb1c5488e9be075c",
+   "rom": "bailan_pinyin.gba",
+   "why": "input interface changed: naming keyboard matches neither the stock layout nor the stock symbol pages at any row stride 8..39, and neither stock letter page is present at stride 8 either - this build replaced the keyboard the 4x8 Chinese grid overlays, so there is nothing here to inject into",
+   "reason": "BaiLan pinyin-IME build: the naming screen shows a QWERTY pinyin keyboard with its own 拼音 / ABC / 删除文字 / 确认 keys, which is on camera here. The stock 4x8 grid this adapter overlays does not exist in that UI.",
+   "evidence": [
+    "test_roms/reports_full/work/bailan_pinyin.log",
+    "test_roms/reports_full/matrix.tsv",
+    "test_roms/roms/bailan_pinyin.gba",
+    "test_roms/qa_20260926/bailan_pinyin/refusal/",
+    "test_roms/qa_20260926/bailan_pinyin/refusal/png/"
+   ],
+   "recorded": "2026-09-27"
+  },
+  {
+   "sha256": "55e5f82544a7f970000d7a098a186c897ca203ba3fc04dbd93085cae93405c66",
+   "rom": "maplefall_ch.gba",
+   "why": "input interface changed: naming keyboard matches neither the stock layout nor the stock symbol pages at any row stride 8..39, and neither stock letter page is present at stride 8 either - this build replaced the keyboard the 4x8 Chinese grid overlays, so there is nothing here to inject into",
+   "reason": "Same replaced pinyin keyboard as bailan_pinyin, green theme, photographed here: 拼音 / abc / 1/? / 删除文字 / 完毕 over a QWERTY grid.",
+   "evidence": [
+    "test_roms/reports_full/work/maplefall_ch.log",
+    "test_roms/reports_full/matrix.tsv",
+    "test_roms/roms/maplefall_ch.gba",
+    "test_roms/qa_20260926/maplefall_ch/refusal/",
+    "test_roms/qa_20260926/maplefall_ch/refusal/png/"
+   ],
+   "recorded": "2026-09-27"
+  },
+  {
+   "sha256": "73cb4b13025e2d5462f7c04c0099324744e5104331000504e5fbf539e9e895bb",
+   "rom": "pokedelphia_v0.1.gba",
+   "why": "gate-4 boundary route does not pass: ROUTE GAP: sNamingScreen is 00000000 at b01, outside EWRAM - this host needs its own nav route",
+   "reason": "The naming screen is not in this build's reachable flow: the demo opens after name entry, with the protagonist already named (opening text hardcodes 'Charlie loves rats', the START menu's second row is 'Charlie', and a full-ROM search for the stock naming prompts returns 0 hits -- see test_roms/README.md section 15.7). Re-proven on the current bytes by diag_card/png/k020_card.png, the trainer card (NAME: Charlie, IDNo.43902) captured on this exact patched ROM with its own artifact.txt; sNamingScreen reads 00000000 while that card is on screen, so the pointer is not being read at the wrong address. The patch is also measured inert here: boundary_final_patched/ and boundary_final_clean/ replay the same script on the patched and unpatched ROM against the same emulator build (both artifact.txt carry the same harness= hash) and their 27 PNGs are byte-identical. Hence ROUTE GAP at b01, not a behaviour failure: this host has no name-entry screen to take over, which is out of scope for CKI and is not a claim that the ROM is incompatible.",
+   "evidence": [
+    "test_roms/reports_full/pokedelphia_v0.1.json",
+    "test_roms/qa_20260926/pokedelphia_v0.1/boundary_final_patched/",
+    "test_roms/qa_20260926/pokedelphia_v0.1/boundary_final_patched_sheet.png",
+    "test_roms/qa_20260926/pokedelphia_v0.1/diag_card/",
+    "test_roms/qa_20260926/pokedelphia_v0.1/boundary_final_clean/"
+   ],
+   "recorded": "2026-09-27"
+  }
+ ],
+ "out_of_scope": {
+  "decided_by": "user",
+  "date": "2026-09-26",
+  "decision": "这 6 台不要了：2 台本来就不应该打针，4 台改过流程，没必要再为它们补截图。",
+  "meaning": "Removed from the coverage denominator and from the work queue by decision, not by measurement. Their rows stay in test_roms/reports_full/matrix.tsv as REJECTED-BY-DESIGN and their evidence (re-measured bytes + bound captures) stays re-runnable, so this entry is revivable without re-collecting anything.",
+  "hosts": [
+   {
+    "sha256": "95798b1e85ad0e8048f5a1bbb4484528daae45dd8260b21aeef57cfeea7632ce",
+    "rom": "PVPdalao_Pre2.gba",
+    "class": "input interface changed: naming keyboard grid is 4 rows x 14 columns (layout at 0x6d2c7c), not the stock 3 pages x 4 rows x 8 columns - this build replaced the keyboard the 4x8 Chinese grid overlays, so there is nothing here to inject into"
+   },
+   {
+    "sha256": "c8ea1310098d2f8d1fad8b11de80d221b952d4553d2e47f00084c8eab8bed351",
+    "rom": "PVPdalao_Pre3.gba",
+    "class": "input interface changed: naming keyboard grid is 4 rows x 14 columns (layout at 0x6d2c6c), not the stock 3 pages x 4 rows x 8 columns - this build replaced the keyboard the 4x8 Chinese grid overlays, so there is nothing here to inject into"
+   },
+   {
+    "sha256": "95e0275ad7193b272f60efe3c5fbba74364bece007ab4e35683b0100405f8522",
+    "rom": "PVPdalao_V1.0.gba",
+    "class": "input interface changed: naming keyboard grid is 4 rows x 14 columns (layout at 0x6d2c7c), not the stock 3 pages x 4 rows x 8 columns - this build replaced the keyboard the 4x8 Chinese grid overlays, so there is nothing here to inject into"
+   },
+   {
+    "sha256": "1f6a269cdee7900ffd2888f8abb607a5726dbebb9f5078a6e357cc36d314229b",
+    "rom": "PVPdalao_V1.1.gba",
+    "class": "input interface changed: naming keyboard grid is 4 rows x 14 columns (layout at 0x6d2fcc), not the stock 3 pages x 4 rows x 8 columns - this build replaced the keyboard the 4x8 Chinese grid overlays, so there is nothing here to inject into"
+   },
+   {
+    "sha256": "714946aee842d0de46eda56532346d8dcc188d17bddc301afb1c5488e9be075c",
+    "rom": "bailan_pinyin.gba",
+    "class": "input interface changed: naming keyboard matches neither the stock layout nor the stock symbol pages at any row stride 8..39, and neither stock letter page is present at stride 8 either - this build replaced the keyboard the 4x8 Chinese grid overlays, so there is nothing here to inject into"
+   },
+   {
+    "sha256": "55e5f82544a7f970000d7a098a186c897ca203ba3fc04dbd93085cae93405c66",
+    "rom": "maplefall_ch.gba",
+    "class": "input interface changed: naming keyboard matches neither the stock layout nor the stock symbol pages at any row stride 8..39, and neither stock letter page is present at stride 8 either - this build replaced the keyboard the 4x8 Chinese grid overlays, so there is nothing here to inject into"
+   }
+  ]
+ },
+ "known_limitations": {
+  "decided_by": "user",
+  "date": "2026-09-27",
+  "decision": "两条都按已记录缺陷发货：链塌缩那 3 台记为已知限制；退出缺陷现在不修。",
+  "meaning": "Both ship as documented limitations instead of being fixed in this release. Each one already has independent evidence that the *outcome* is right; what is missing is attribution (limitation 1) or one frame of cosmetics (limitation 2). Neither fix is a measurement - both need a payload change, and a payload change re-records all 25 hosts on both compiler routes and reopens the visual sign-off.",
+  "limitations": [
+   {
+    "id": "gate_state_unattributed",
+    "hosts": [
+     "quetzal_alpha8v2_cn",
+     "rogue_zh",
+     "pokeemerald-rogue_release_build"
+    ],
+    "what": "The gate finds its button sprite through host bytes (ns[0x1E24] -> gSprites[fid][0x3C]). On these three the chain collapses onto one sprite (fid == bid == 0), so the gate's three words sit in host-owned gSprites[0].data[] and its state cannot be attributed after the fact - tools/read_gate_verdict.py reports them as unattributable rather than guessing.",
+    "why_shippable": "The outcome of each is proven by other evidence, not by this readout: the two entered hosts by lock word C000 + the three double-byte chars in the name buffer + signed-off screenshots, the refused one by a probe capture log byte-identical to its own control and check_refusal_pixels.py reporting 0 novel pixels. Writing into that sprite has shown no visible effect on either route.",
+    "cost_to_fix": "Any other landing site for the three words is still somebody's data[] (the payload has no writable statics), so the change needs a new proven-unused slot plus a full re-record: 25 hosts x 2 routes, behaviour + boundary + visual gates.",
+    "evidence": "qa/font_gate_verdicts.json rows with located=false"
+   },
+   {
+    "id": "unlock_repaint",
+    "hosts": [
+     "all entered hosts"
+    ],
+    "what": "SELECT and the PAGE tab clear the lock flag without repainting the keyboard, so the Chinese grid stays on screen until the host's next page swap repaints it.",
+    "why_shippable": "Names, lock words and the cursor are all correct at the moment of unlock; only the picture lags by one page swap, and the stock renderer overwrites it. Both paths were exercised and behave the same way.",
+    "cost_to_fix": "One call per path in payload/adapter_v10.c: the ck_handle_frame SELECT branch (line 1130 at the time of writing) and the ck_page_handler unlock branch (line 1147). Either is a payload change, so it re-records all 25 hosts on both routes.",
+    "evidence": "docs/USAGE.md section 5 known-defect box"
+   }
+  ]
+ }
+}
