@@ -29,3 +29,8 @@ clang --target=arm-none-eabi -march=armv4t -mthumb -nostdlib -fuse-ld=lld -Wl,-e
 6. 确认后调用游戏原有保存路径，检查所有下游字段能存完整编码和 EOS。分别验证玩家、对手、宝可梦、箱子以及改版自定义命名目标。编辑缓冲能容纳姓名，不代表菜单显示或保存字段也支持它。
 
 Thumb 示例使用 r0 接收 `CKIInput`，调用 C 包装函数，再用 r0 返回 `CKIEvent`，遵循 ARM7TDMI interworking 调用约定。将包装函数接入命名任务，按工程 ABI 保存寄存器。ARM 调用方或不遵循 ABI 的手写挂钩需要自己的桥接代码。
+
+
+## 可选拼音输入
+
+导出包包含 `cki_pinyin.*`、`cki_pinyin_ui.*`、`example_pinyin.c` 和 `PINYIN.md`。它与原分页模块独立，字典、编码、字母字形和保存容量由宿主传入。详见[拼音接入说明](../sdk/PINYIN.md)。

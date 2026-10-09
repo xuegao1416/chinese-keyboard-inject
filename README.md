@@ -62,7 +62,7 @@ python cki.py inject "Pokemon Emerald.gba" -o "Pokemon Emerald_cki.gba"
 | L／R | 翻页 |
 | SELECT 或 PAGE | 返回原版键盘，已输入字符保留 |
 
-当前是 4×8 分页选字，没有拼音检索。
+当前二进制注入器仍是 4×8 分页选字。源码接入包新增[可选拼音层](sdk/PINYIN.md)，支持同区域拼音输入、候选分页与宿主自定义编码；需手动接入，不改变当前注入器行为。
 
 ## 给 C／Thumb 汇编改版接入
 
